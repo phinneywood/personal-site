@@ -14,13 +14,12 @@ npm run dev
 ## Verification
 
 ```sh
-npm run export:preview
 npm test
 npm run build
 npm run preview
 ```
 
-The production build writes `dist/`. Commit `package-lock.json` after the first successful install, then use `npm ci`. The standalone file in `preview/` is for design review; it is not a substitute for the Astro production build.
+`npm test` generates `preview/index.html` and runs the content and safety tests. The production build writes `dist/`. Commit `package-lock.json` after the first successful install, then use `npm ci`. The standalone preview is for design review; it is not a substitute for the Astro production build.
 
 ## Deployment
 
@@ -38,4 +37,4 @@ The approved biography is one paragraph. Long Form remains linked to `https://re
 
 ## Status
 
-Source upload and a real Astro build are the next setup steps. Earlier local dependency installation failed with registry DNS `EAI_AGAIN`; an earlier Vercel deployment tool call also failed. No hosted preview or domain change is claimed by this README.
+Approved site source is ready for an initial Vercel build. Content tests have passed locally. A production Astro build remains unverified; earlier dependency installation failed with registry DNS `EAI_AGAIN`, and an earlier Vercel deployment tool call failed. No hosted preview or domain change is claimed by this README.
