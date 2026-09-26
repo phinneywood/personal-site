@@ -1,6 +1,8 @@
 # Antonio Skilton — personal website
 
-A one-page Astro portfolio: a short biography, Long Form, and GitHub / LinkedIn links. Independent of the Long Form application.
+Source for [antonioskilton.com](https://antonioskilton.com): a concise introduction to Antonio Skilton, with Long Form and links to LinkedIn and GitHub.
+
+A one-page Astro site with warm off-white surfaces, dark green typography, restrained rust accents, and an editorial layout. Independent of the Long Form application.
 
 ## Development
 
@@ -37,4 +39,4 @@ The approved biography is one paragraph. Long Form remains linked to `https://re
 
 ## Status
 
-Approved site source is ready for an initial Vercel build. Content tests have passed locally. A production Astro build remains unverified; earlier dependency installation failed with registry DNS `EAI_AGAIN`, and an earlier Vercel deployment tool call failed. No hosted preview or domain change is claimed by this README.
+The site is publicly reachable at https://antonioskilton.com. Live HTML was verified during the profile presentation review. It still includes the preview `noindex, nofollow` directive; search-indexing cleanup remains a separate launch follow-up. This documentation update does not change site code, deployment configuration, or DNS.
