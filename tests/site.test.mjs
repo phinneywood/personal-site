@@ -16,10 +16,12 @@ test('both approved biography sentences appear in one paragraph', () => {
     'I’m a technical program manager with a data science background. I lead machine learning deployments and build agentic solutions to help teams ship models at a Fortune 100 company.'
   ]);
 });
-test('only the approved external destinations appear', () => {
+test('only the approved external destinations appear, with LinkedIn first among profile links', () => {
   assert.deepEqual([...page.matchAll(/href="(https:[^"]+)"/g)].map(m => m[1]), [
-    'https://reader.antonioskilton.com', 'https://github.com/antonioskilton', 'https://www.linkedin.com/in/antonioskilton'
+    'https://www.linkedin.com/in/antonioskilton', 'https://github.com/antonioskilton', 'https://reader.antonioskilton.com'
   ]);
+  const profileLinks = page.match(/<nav class="profile-links"[\s\S]*?<\/nav>/)[0];
+  assert.ok(profileLinks.indexOf('LinkedIn') < profileLinks.indexOf('GitHub'));
 });
 test('a single main landmark and heading, plus keyboard skip navigation', () => {
   assert.equal((page.match(/<main\b/g) || []).length, 1);
