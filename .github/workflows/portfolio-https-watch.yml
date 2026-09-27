@@ -1,0 +1,106 @@
+name: Portfolio HTTPS Watch
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main, ops/portfolio-https-watch]
+    paths: [.github/workflows/portfolio-https-watch.yml]
+permissions: {}
+concurrency:
+  group: portfolio-https-watch
+  cancel-in-progress: false
+jobs:
+  public-https:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - name: Measure HTTPS, canonical redirect, page content and CSS
+        shell: bash
+        run: |
+          python3 -u - <<'PY'
+          import datetime, json, os, pathlib, subprocess, sys, tempfile, time
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit
+          ROOT='https://antonioskilton.com/'
+          WWW='https://www.antonioskilton.com/'
+          ALIAS='https://personal-site-flame-kappa.vercel.app/'
+          def now():
+              return datetime.datetime.now(datetime.timezone.utc).isoformat()
+          def transport_ok(r, status):
+              return r.get('exit_code')==0 and r.get('http_status')==status and r.get('tls_verify_result')==0
+          def classify(control_ok, checks):
+              if checks and all(checks.values()): return 'healthy'
+              return 'site_check_failed' if control_ok else 'checker_unavailable'
+          good={'exit_code':0,'http_status':200,'tls_verify_result':0}
+          assert transport_ok(good,200)
+          assert not transport_ok(dict(good,http_status=404),200)
+          assert not transport_ok(dict(good,tls_verify_result=60),200)
+          assert not transport_ok(dict(good,exit_code=6),200)
+          assert classify(True,{'root':True,'redirect':True})=='healthy'
+          assert classify(True,{'root':True,'redirect':False})=='site_check_failed'
+          assert classify(False,{'root':False})=='checker_unavailable'
+          assert classify(False,{'root':True,'redirect':True})=='healthy'
+          assert classify(True,{})!='healthy'
+          print('CHECKER_SELF_TEST passed: bad status, TLS, DNS, redirects and missing evidence cannot pass.')
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.styles=[]; self.links=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag=='link' and a.get('rel')=='stylesheet': self.styles.append(a.get('href',''))
+                  if tag=='a': self.links.append(a.get('href',''))
+          def measure():
+              records=[]
+              with tempfile.TemporaryDirectory() as tmp:
+                  def probe(url,follow=False):
+                      idx=len(records); body=pathlib.Path(tmp)/str(idx)
+                      fmt='%{http_code}\t%{ssl_verify_result}\t%{num_redirects}\t%{url_effective}\t%{redirect_url}\t%{content_type}'
+                      args=['curl','-sS','--proto','=https','--proto-redir','=https','--connect-timeout','8','--max-time','22','--max-filesize','2097152','-o',str(body),'-w',fmt]
+                      if follow: args+=['-L','--max-redirs','4']
+                      r={'url':url,'follow':follow,'measured_at':now()}; text=''
+                      try:
+                          p=subprocess.run(args+[url],capture_output=True,text=True,timeout=26)
+                          r.update(exit_code=p.returncode,error=p.stderr[:1000])
+                          f=p.stdout.split('\t')
+                          if len(f)==6:
+                              r.update(http_status=int(f[0]),tls_verify_result=int(f[1]),redirects=int(f[2]),effective_url=f[3],redirect_url=f[4],content_type=f[5])
+                          if body.exists(): text=body.read_text(errors='replace')
+                      except Exception as e:
+                          r.update(exit_code=-1,error=type(e).__name__+': '+str(e))
+                      records.append(r); print('HTTP_EVIDENCE '+json.dumps(r),flush=True)
+                      return r,text
+                  control,_=probe('https://github.com/')
+                  root,html=probe(ROOT)
+                  www,_=probe(WWW)
+                  followed,_=probe(WWW,True)
+                  alias,_=probe(ALIAS)
+                  page=Page(); page.feed(html)
+                  li='https://www.linkedin.com/in/antonioskilton'; gh='https://github.com/antonioskilton'
+                  content_ok='Antonio Skilton' in html and li in page.links and gh in page.links and page.links.index(li)<page.links.index(gh)
+                  styles=[]
+                  for href in page.styles[:5]:
+                      url=urljoin(ROOT,href)
+                      if urlsplit(url).netloc!='antonioskilton.com': continue
+                      css,text=probe(url)
+                      styles.append(transport_ok(css,200) and css.get('content_type','').startswith('text/css') and len(text)>100)
+                  checks={
+                      'root_https':transport_ok(root,200),
+                      'approved_content':content_ok,
+                      'www_permanent_redirect':transport_ok(www,308) and www.get('redirect_url')==ROOT,
+                      'www_one_hop_to_root':transport_ok(followed,200) and followed.get('redirects')==1 and followed.get('effective_url')==ROOT,
+                      'stylesheet':bool(styles) and all(styles)
+                  }
+                  return {'measured_at':now(),'control_ok':transport_ok(control,200),'status':classify(transport_ok(control,200),checks),'checks':checks,'alias_ok':transport_ok(alias,200),'records':records}
+          attempts=[measure()]
+          if attempts[-1]['status']!='healthy':
+              time.sleep(5)
+              attempts.append(measure())
+          result=attempts[-1]
+          summary={k:v for k,v in result.items() if k!='records'}
+          summary.update(run_id=os.environ.get('GITHUB_RUN_ID'),run_attempt=os.environ.get('GITHUB_RUN_ATTEMPT'),ref=os.environ.get('GITHUB_REF'),sample_count=len(attempts),sample_statuses=[x['status'] for x in attempts])
+          print('PORTFOLIO_HEALTH '+json.dumps(summary),flush=True)
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('# Portfolio HTTPS Watch\n\n```json\n'+json.dumps(summary,indent=2)+'\n```\n\nA checker failure is not proof of a site outage. Read the measured status and evidence; build/deployment completion alone is never sufficient.\n')
+          sys.exit(0 if result['status']=='healthy' else 2)
+          PY
