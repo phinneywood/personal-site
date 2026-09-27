@@ -1,7 +1,9 @@
 name: Portfolio HTTPS Watch
 on:
   schedule:
-    - cron: '17 * * * *'
+    # Two off-hour slots provide margin within the watch's 2-hour freshness limit.
+    # GitHub schedules are best-effort; a push/manual run does not verify cron.
+    - cron: '17,47 * * * *'
   workflow_dispatch:
   push:
     branches: [main, ops/portfolio-https-watch]
