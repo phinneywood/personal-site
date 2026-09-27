@@ -1,86 +1,155 @@
-name: One-time portfolio availability evidence
-run-name: Portfolio public-network diagnostic (no deployment)
-on: [push, create]
+name: Portfolio public availability verification
+run-name: Portfolio public-network verification (no deployment)
+on:
+  push:
+    branches: [diagnostics/portfolio-availability-20260927]
+    paths: [.github/workflows/portfolio-availability-incident.yml]
 permissions: {}
 concurrency:
   group: portfolio-availability-incident-20260927
   cancel-in-progress: true
 jobs:
-  public-network-evidence:
-    if: github.ref == 'refs/heads/diagnostics/portfolio-availability-20260927'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 6
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
     steps:
-      - name: Timestamped public DNS, verified TLS, HTTP and redirect evidence
+      - name: Verify public HTTPS, redirects, content and stylesheets
         shell: bash
         run: |
           python3 -u - <<'PY'
-          import datetime, json, os, pathlib, re, shlex, shutil, socket, ssl, subprocess, tempfile
+          import datetime, hashlib, json, os, pathlib, re, subprocess, sys, tempfile
           from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit
+          ROOT = 'https://antonioskilton.com/'
+          WWW = 'https://www.antonioskilton.com/'
+          ALIAS = 'https://personal-site-flame-kappa.vercel.app/'
           def now():
               return datetime.datetime.now(datetime.timezone.utc).isoformat()
-          def run(args, timeout=25):
-              print('\n===', now(), shlex.join(args), '===', flush=True)
-              try:
-                  p = subprocess.run(args, capture_output=True, text=True, timeout=timeout, input='')
-                  print('exit:', p.returncode)
-                  if p.stdout: print(p.stdout[:24000])
-                  if p.stderr: print('stderr:', p.stderr[:8000])
-                  return p
-              except (subprocess.TimeoutExpired, OSError) as e:
-                  print(type(e).__name__, str(e)); return None
-          print('READ-ONLY INCIDENT EVIDENCE', now())
-          print('runner_os:', os.environ.get('RUNNER_OS'), 'run_id:', os.environ.get('GITHUB_RUN_ID'))
-          print('No checkout, no credentials, no application mutations. A completed job is not proof of site health.')
-          root = 'antonioskilton.com'
-          targets = [root, 'www.' + root, 'personal-site-flame-kappa.vercel.app']
-          queries = [(root, t) for t in ['NS','SOA','A','AAAA','CAA','DS']] + [('www.'+root,t) for t in ['CNAME','A','AAAA']] + [(targets[2],t) for t in ['A','AAAA']] + [('github.com','A')]
-          if shutil.which('dig'):
-              for resolver in ['1.1.1.1', '8.8.8.8']:
-                  for host, typ in queries:
-                      run(['dig', '@'+resolver, host, typ, '+time=3', '+tries=1', '+dnssec', '+noall', '+comments', '+answer', '+authority'], 6)
-              ns = run(['dig','@1.1.1.1',root,'NS','+short','+time=3','+tries=1'],6)
-              nameservers = [] if ns is None else [x.rstrip('.') for x in ns.stdout.splitlines() if re.fullmatch(r'[a-zA-Z0-9.-]+\.', x)]
-              for server in nameservers[:4]:
-                  for host, typ in [(root,t) for t in ['SOA','A','AAAA','CAA']] + [('www.'+root,'CNAME')]:
-                      run(['dig','@'+server,host,typ,'+norecurse','+dnssec','+time=3','+tries=1','+noall','+comments','+answer','+authority'],6)
-          else:
-              print('dig unavailable; no authoritative DNS measurement claimed')
+          def classify(control_ok, checks):
+              if all(checks.values()): return 'healthy'
+              return 'site_check_failed' if control_ok else 'checker_unavailable'
+          assert classify(True, {'root':True,'www':True}) == 'healthy'
+          assert classify(True, {'tls':False,'www':True}) == 'site_check_failed'
+          assert classify(True, {'redirect':False}) == 'site_check_failed'
+          assert classify(True, {'content':False}) == 'site_check_failed'
+          assert classify(False, {'root':False}) == 'checker_unavailable'
+          assert classify(False, {'root':True,'www':True}) == 'healthy'
+          print('Classifier regression tests passed; simulated failures never count as healthy.')
           class Page(HTMLParser):
               def __init__(self):
-                  super().__init__(); self.anchors=[]; self.capture=None; self.title=''; self.h1=''
+                  super().__init__(); self.links=[]; self.styles=[]; self.bio_count=0; self.bio_depth=None; self.depth=0
               def handle_starttag(self, tag, attrs):
                   a=dict(attrs)
-                  if tag=='a': self.anchors.append({'href':a.get('href'),'text':''}); self.capture='a'
-                  elif tag in ['title','h1']: self.capture=tag
-              def handle_data(self, text):
-                  if self.capture=='a' and self.anchors: self.anchors[-1]['text']+=text
-                  elif self.capture=='title': self.title+=text
-                  elif self.capture=='h1': self.h1+=text
+                  if tag=='a': self.links.append(a.get('href',''))
+                  if tag=='link' and a.get('rel')=='stylesheet': self.styles.append(a.get('href',''))
+                  if tag=='div':
+                      self.depth+=1
+                      if 'about-copy' in a.get('class','').split(): self.bio_depth=self.depth
+                  if tag=='p' and self.bio_depth is not None: self.bio_count+=1
               def handle_endtag(self, tag):
-                  if tag in ['a','title','h1']: self.capture=None
+                  if tag=='div':
+                      if self.bio_depth==self.depth: self.bio_depth=None
+                      self.depth-=1
+          results=[]
           with tempfile.TemporaryDirectory() as tmp:
-              for idx,(host,follow) in enumerate([(x,False) for x in targets+['github.com']] + [('www.'+root,True)]):
-                  headers=pathlib.Path(tmp)/f'{idx}.headers'; body=pathlib.Path(tmp)/f'{idx}.body'
-                  args=['curl','--proto','=https','--proto-redir','=https','-sS','--connect-timeout','8','--max-time','22','--max-filesize','2097152','-D',str(headers),'-o',str(body),'-w','%{json}']
-                  if follow: args += ['-L','--max-redirs','5']
-                  p=run(args+['https://'+host+'/'],26)
-                  if headers.exists(): print('RESPONSE HEADERS\n'+headers.read_text(errors='replace')[:16000])
-                  if body.exists():
-                      text=body.read_text(errors='replace'); page=Page()
-                      try:
-                          page.feed(text)
-                          print('PAGE:',json.dumps({'title':page.title,'h1':page.h1,'anchors':page.anchors[:20],'bytes':body.stat().st_size}))
-                      except Exception as e: print('HTML parser:',str(e))
-                      if host!='github.com' and (len(text)<4096 or not page.h1): print('BODY EXCERPT\n'+text[:4096])
-              for host in targets:
-                  print('\n===',now(),'Independent TLS certificate validation:',host,'===')
+              def probe(url, follow=False):
+                  idx=len(results); h=pathlib.Path(tmp)/f'{idx}.headers'; b=pathlib.Path(tmp)/f'{idx}.body'
+                  fmt='%{http_code}\t%{ssl_verify_result}\t%{num_redirects}\t%{url_effective}\t%{remote_ip}\t%{redirect_url}\t%{content_type}'
+                  args=['curl','-sS','--connect-timeout','8','--max-time','25','--max-filesize','2097152','--proto','=http,https','--proto-redir','=https','-D',str(h),'-o',str(b),'-w',fmt]
+                  if follow: args+=['-L','--max-redirs','4']
+                  stamp=now(); record={'measured_at':stamp,'url':url,'follow':follow}
                   try:
-                      ctx=ssl.create_default_context()
-                      with socket.create_connection((host,443),timeout=8) as raw:
-                          with ctx.wrap_socket(raw,server_hostname=host) as conn:
-                              cert=conn.getpeercert()
-                              print(json.dumps({'validated':True,'protocol':conn.version(),'peer':conn.getpeername(),'subject':cert.get('subject'),'issuer':cert.get('issuer'),'notBefore':cert.get('notBefore'),'notAfter':cert.get('notAfter'),'subjectAltName':cert.get('subjectAltName')}))
-                  except Exception as e: print(json.dumps({'validated':False,'error_type':type(e).__name__,'error':str(e)}))
-          print('END OF MEASUREMENTS',now())
+                      p=subprocess.run(args+[url],capture_output=True,text=True,timeout=30)
+                      fields=p.stdout.split('\t')
+                      record.update(exit_code=p.returncode,error=p.stderr[:1500])
+                      if len(fields)==7:
+                          record.update(http_status=int(fields[0]),tls_verify_result=int(fields[1]),redirects=int(fields[2]),effective_url=fields[3],remote_ip=fields[4],redirect_url=fields[5],content_type=fields[6])
+                      headers=h.read_text(errors='replace') if h.exists() else ''
+                      keep=('HTTP/','location:','server:','date:','etag:','last-modified:','x-vercel-id:','x-robots-tag:')
+                      record['headers']=[line for line in headers.splitlines() if line.startswith('HTTP/') or line.lower().startswith(keep[1:])]
+                      text=b.read_text(errors='replace') if b.exists() else ''
+                      record['bytes']=b.stat().st_size if b.exists() else 0
+                      record['sha256']=hashlib.sha256(b.read_bytes()).hexdigest() if b.exists() else None
+                  except Exception as e:
+                      record.update(exit_code=-1,error=type(e).__name__+': '+str(e)); text=''
+                  results.append(record)
+                  print('HTTP_EVIDENCE '+json.dumps(record),flush=True)
+                  return record,text
+              def ok(r,status):
+                  return r.get('exit_code')==0 and r.get('http_status')==status and r.get('tls_verify_result')==0
+              control,_=probe('https://github.com/')
+              trace,trace_text=probe('https://www.cloudflare.com/cdn-cgi/trace')
+              print('RUNNER_NETWORK '+json.dumps({k:v for k,v in (line.split('=',1) for line in trace_text.splitlines() if '=' in line) if k in ['ip','colo','loc']}))
+              root,html=probe(ROOT)
+              www,_=probe(WWW)
+              redirected,redirect_html=probe(WWW,True)
+              alias,alias_html=probe(ALIAS)
+              http_root,_=probe('http://antonioskilton.com/',True)
+              http_www,_=probe('http://www.antonioskilton.com/',True)
+              page=Page(); page.feed(html)
+              linkedin='https://www.linkedin.com/in/antonioskilton'; github='https://github.com/antonioskilton'
+              profiles=linkedin in page.links and github in page.links and page.links.index(linkedin)<page.links.index(github)
+              content='Antonio Skilton' in html and page.bio_count==1 and profiles
+              styles=[]
+              for href in page.styles:
+                  url=urljoin(ROOT,href)
+                  if urlsplit(url).netloc!='antonioskilton.com': continue
+                  css,text=probe(url)
+                  styles.append(ok(css,200) and css.get('content_type','').startswith('text/css') and len(text)>100)
+              checks={
+                  'root_https':ok(root,200) and content,
+                  'www_permanent_redirect':ok(www,308) and www.get('redirect_url')==ROOT,
+                  'www_one_hop_to_root':ok(redirected,200) and redirected.get('redirects')==1 and redirected.get('effective_url')==ROOT and redirect_html==html,
+                  'alias_same_portfolio':ok(alias,200) and alias_html==html,
+                  'http_root_upgrade':ok(http_root,200) and http_root.get('effective_url')==ROOT,
+                  'http_www_upgrade':ok(http_www,200) and http_www.get('effective_url')==ROOT,
+                  'stylesheet_available':bool(styles) and all(styles)
+              }
+              summary={'measured_at':now(),'run_id':os.environ.get('GITHUB_RUN_ID'),'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'runner_os':os.environ.get('RUNNER_OS'),'control_ok':ok(control,200),'status':classify(ok(control,200),checks),'checks':checks,'bio_paragraphs':page.bio_count,'profile_order_ok':profiles,'noindex_present':'noindex' in html}
+              print('PORTFOLIO_CHECK '+json.dumps(summary),flush=True)
+              with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+                  f.write('# Public portfolio availability\n\n```json\n'+json.dumps(summary,indent=2)+'\n```\n\nMeasurements only; healthy now does not establish the cause of a prior reported failure.\n')
+              sys.exit(0 if summary['status']=='healthy' else 2)
           PY
+      - name: Browser verification on macOS
+        if: matrix.os == 'macos-15'
+        shell: bash
+        run: |
+          export AGENT_BROWSER_EXECUTABLE_PATH='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+          export AGENT_BROWSER_DEFAULT_TIMEOUT=20000
+          ab() { npx --yes agent-browser@0.36.0 --session portfolio-incident "$@"; }
+          trap 'ab close || true' EXIT
+          test -x "$AGENT_BROWSER_EXECUTABLE_PATH"
+          ab open https://antonioskilton.com/
+          ab wait --load networkidle
+          ab snapshot -i
+          ab set viewport 390 844
+          ab eval --stdin <<'JS'
+          (() => {
+            const links = [...document.querySelectorAll('.profile-links a')].map(a => ({text:a.textContent.trim(),href:a.href}));
+            const result = {url:location.href,title:document.title,width:innerWidth,bioParagraphs:document.querySelectorAll('.about-copy p').length,links,loadedStylesheets:document.styleSheets.length,horizontalOverflow:document.documentElement.scrollWidth>innerWidth,background:getComputedStyle(document.body).backgroundColor};
+            if (location.hostname!=='antonioskilton.com' || result.bioParagraphs!==1 || links[0]?.text!=='LinkedIn' || links[1]?.text!=='GitHub' || !result.loadedStylesheets || result.horizontalOverflow) throw new Error(JSON.stringify(result));
+            return JSON.stringify(result);
+          })()
+          JS
+          ab set viewport 1440 1000
+          ab open https://www.antonioskilton.com/
+          ab wait --load networkidle
+          ab snapshot -i
+          ab eval --stdin <<'JS'
+          (() => {
+            const result={url:location.href,title:document.title,width:innerWidth,h1:document.querySelector('h1')?.textContent,loadedStylesheets:document.styleSheets.length,horizontalOverflow:document.documentElement.scrollWidth>innerWidth};
+            if (location.href!=='https://antonioskilton.com/' || result.h1!=='Antonio Skilton' || !result.loadedStylesheets || result.horizontalOverflow) throw new Error(JSON.stringify(result));
+            return JSON.stringify(result);
+          })()
+          JS
+          ab find role link click --name GitHub
+          ab wait --load domcontentloaded
+          ab get url
+          ab snapshot -i
+          ab eval '(() => { if (location.hostname!=="github.com" || location.pathname!=="/antonioskilton") throw new Error(location.href); return location.href; })()'
+          printf 'BROWSER_CHECK passed: root mobile, www desktop, stylesheet application, profile order, GitHub navigation.\n'
