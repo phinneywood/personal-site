@@ -1,0 +1,86 @@
+name: One-time portfolio availability evidence
+run-name: Portfolio public-network diagnostic (no deployment)
+on: [push, create]
+permissions: {}
+concurrency:
+  group: portfolio-availability-incident-20260927
+  cancel-in-progress: true
+jobs:
+  public-network-evidence:
+    if: github.ref == 'refs/heads/diagnostics/portfolio-availability-20260927'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - name: Timestamped public DNS, verified TLS, HTTP and redirect evidence
+        shell: bash
+        run: |
+          python3 -u - <<'PY'
+          import datetime, json, os, pathlib, re, shlex, shutil, socket, ssl, subprocess, tempfile
+          from html.parser import HTMLParser
+          def now():
+              return datetime.datetime.now(datetime.timezone.utc).isoformat()
+          def run(args, timeout=25):
+              print('\n===', now(), shlex.join(args), '===', flush=True)
+              try:
+                  p = subprocess.run(args, capture_output=True, text=True, timeout=timeout, input='')
+                  print('exit:', p.returncode)
+                  if p.stdout: print(p.stdout[:24000])
+                  if p.stderr: print('stderr:', p.stderr[:8000])
+                  return p
+              except (subprocess.TimeoutExpired, OSError) as e:
+                  print(type(e).__name__, str(e)); return None
+          print('READ-ONLY INCIDENT EVIDENCE', now())
+          print('runner_os:', os.environ.get('RUNNER_OS'), 'run_id:', os.environ.get('GITHUB_RUN_ID'))
+          print('No checkout, no credentials, no application mutations. A completed job is not proof of site health.')
+          root = 'antonioskilton.com'
+          targets = [root, 'www.' + root, 'personal-site-flame-kappa.vercel.app']
+          queries = [(root, t) for t in ['NS','SOA','A','AAAA','CAA','DS']] + [('www.'+root,t) for t in ['CNAME','A','AAAA']] + [(targets[2],t) for t in ['A','AAAA']] + [('github.com','A')]
+          if shutil.which('dig'):
+              for resolver in ['1.1.1.1', '8.8.8.8']:
+                  for host, typ in queries:
+                      run(['dig', '@'+resolver, host, typ, '+time=3', '+tries=1', '+dnssec', '+noall', '+comments', '+answer', '+authority'], 6)
+              ns = run(['dig','@1.1.1.1',root,'NS','+short','+time=3','+tries=1'],6)
+              nameservers = [] if ns is None else [x.rstrip('.') for x in ns.stdout.splitlines() if re.fullmatch(r'[a-zA-Z0-9.-]+\.', x)]
+              for server in nameservers[:4]:
+                  for host, typ in [(root,t) for t in ['SOA','A','AAAA','CAA']] + [('www.'+root,'CNAME')]:
+                      run(['dig','@'+server,host,typ,'+norecurse','+dnssec','+time=3','+tries=1','+noall','+comments','+answer','+authority'],6)
+          else:
+              print('dig unavailable; no authoritative DNS measurement claimed')
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.anchors=[]; self.capture=None; self.title=''; self.h1=''
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if tag=='a': self.anchors.append({'href':a.get('href'),'text':''}); self.capture='a'
+                  elif tag in ['title','h1']: self.capture=tag
+              def handle_data(self, text):
+                  if self.capture=='a' and self.anchors: self.anchors[-1]['text']+=text
+                  elif self.capture=='title': self.title+=text
+                  elif self.capture=='h1': self.h1+=text
+              def handle_endtag(self, tag):
+                  if tag in ['a','title','h1']: self.capture=None
+          with tempfile.TemporaryDirectory() as tmp:
+              for idx,(host,follow) in enumerate([(x,False) for x in targets+['github.com']] + [('www.'+root,True)]):
+                  headers=pathlib.Path(tmp)/f'{idx}.headers'; body=pathlib.Path(tmp)/f'{idx}.body'
+                  args=['curl','--proto','=https','--proto-redir','=https','-sS','--connect-timeout','8','--max-time','22','--max-filesize','2097152','-D',str(headers),'-o',str(body),'-w','%{json}']
+                  if follow: args += ['-L','--max-redirs','5']
+                  p=run(args+['https://'+host+'/'],26)
+                  if headers.exists(): print('RESPONSE HEADERS\n'+headers.read_text(errors='replace')[:16000])
+                  if body.exists():
+                      text=body.read_text(errors='replace'); page=Page()
+                      try:
+                          page.feed(text)
+                          print('PAGE:',json.dumps({'title':page.title,'h1':page.h1,'anchors':page.anchors[:20],'bytes':body.stat().st_size}))
+                      except Exception as e: print('HTML parser:',str(e))
+                      if host!='github.com' and (len(text)<4096 or not page.h1): print('BODY EXCERPT\n'+text[:4096])
+              for host in targets:
+                  print('\n===',now(),'Independent TLS certificate validation:',host,'===')
+                  try:
+                      ctx=ssl.create_default_context()
+                      with socket.create_connection((host,443),timeout=8) as raw:
+                          with ctx.wrap_socket(raw,server_hostname=host) as conn:
+                              cert=conn.getpeercert()
+                              print(json.dumps({'validated':True,'protocol':conn.version(),'peer':conn.getpeername(),'subject':cert.get('subject'),'issuer':cert.get('issuer'),'notBefore':cert.get('notBefore'),'notAfter':cert.get('notAfter'),'subjectAltName':cert.get('subjectAltName')}))
+                  except Exception as e: print(json.dumps({'validated':False,'error_type':type(e).__name__,'error':str(e)}))
+          print('END OF MEASUREMENTS',now())
+          PY

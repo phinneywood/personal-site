@@ -3,6 +3,11 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "git": {
+    "deploymentEnabled": {
+      "diagnostics/portfolio-availability-20260927": false
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
