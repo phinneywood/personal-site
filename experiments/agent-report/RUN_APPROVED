@@ -1,0 +1,3 @@
+Authorized Agent Report paired model experiment, 2026-09-30.
+Six calls; local preflight maximum $1. No automatic retries.
+Run after repository secret AGENT_REPORT_OPENAI_API_KEY is saved.
