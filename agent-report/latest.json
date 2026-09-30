@@ -1,74 +1,144 @@
 {
   "version": 1,
-  "generated_at": "2026-09-30T21:33:25Z",
-  "refresh_checked_at": "2026-09-30T21:33:25Z",
+  "generated_at": "2026-09-30T21:39:16Z",
+  "refresh_checked_at": "2026-09-30T21:39:16Z",
   "status": "degraded",
   "source_health": [
     {
       "source": "techmeme",
       "status": "ok",
       "count": 15,
-      "checked_at": "2026-09-30T21:33:25Z",
+      "checked_at": "2026-09-30T21:39:16Z",
       "newest_article_at": null
     },
     {
       "source": "hn",
       "status": "ok",
-      "count": 15,
-      "checked_at": "2026-09-30T21:33:25Z",
+      "count": 14,
+      "checked_at": "2026-09-30T21:39:16Z",
       "newest_article_at": null
     },
     {
       "source": "smol",
       "status": "stale",
       "count": 0,
-      "checked_at": "2026-09-30T21:33:25Z",
+      "checked_at": "2026-09-30T21:39:16Z",
       "newest_article_at": "2026-09-09T05:44:39Z"
     },
     {
       "source": "latent",
       "status": "ok",
       "count": 3,
-      "checked_at": "2026-09-30T21:33:25Z",
+      "checked_at": "2026-09-30T21:39:16Z",
       "newest_article_at": "2026-09-30T05:53:10Z"
     }
   ],
-  "editorial_status": "fallback:ValueError",
-  "candidate_count": 33,
+  "editorial_status": "checked",
+  "candidate_count": 32,
   "stories": [
     {
-      "id": "8bd6213009738987",
-      "headline": "Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks",
-      "url": "https://axios.com/2026/09/30/google-gemini-4",
-      "publisher": "axios.com",
+      "id": "8a18dee8ca8f941c",
+      "headline": "Gemini 4 Argon: our next era of frontier intelligence",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon",
+      "publisher": "blog.google",
       "fact": "",
       "scope": "coding",
-      "category": "Agent ecosystem",
+      "category": "Models",
       "headline_status": "source",
-      "points": 128,
+      "points": 242,
       "breakdown": {
         "editorial": 127.5,
-        "community": 0,
-        "agreement": 0,
+        "community": 100.0,
+        "agreement": 15,
         "persistence": 0,
-        "total": 128
+        "total": 242
       },
       "observations": [
         {
           "source": "techmeme",
           "rank": 1,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
+        },
+        {
+          "source": "hn",
+          "rank": 1,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "votes": 590,
+          "comments": 363,
+          "observed_url": "https://news.ycombinator.com/item?id=49913571",
+          "published_at": "2026-09-30T20:04:37Z"
         }
       ],
       "coverage": [
         {
           "title": "Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks",
           "url": "https://axios.com/2026/09/30/google-gemini-4"
+        },
+        {
+          "title": "Gemini 4 Argon",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon"
+        },
+        {
+          "title": "Gemini 4 Argon (High): Intelligence, Performance and Price Analysis",
+          "url": "https://artificialanalysis.ai/models/gemini-4-argon"
+        },
+        {
+          "title": "Google Grapples with Employee Skepticism About New Gemini Model",
+          "url": "https://bloomberg.com/news/articles/2026-09-30/google-grapples-with-employee-skepticism-about-new-gemini-model"
         }
       ],
-      "first_seen_at": "2026-09-30T20:49:48Z",
+      "first_seen_at": "2026-09-30T21:00:25Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "16abc22d656644a8",
+      "headline": "Exclusive | FTC opens sweeping probe of Anthropic, OpenAI and other \u2018super intelligence\u2019 models",
+      "url": "https://nypost.com/2026/09/30/us-news/ftc-opens-sweeping-probe-of-anthropic-openai-and-other-super-intelligence-models",
+      "publisher": "nypost.com",
+      "fact": "",
+      "scope": "agents",
+      "category": "Reliability & security",
+      "headline_status": "source",
+      "points": 180,
+      "breakdown": {
+        "editorial": 126.75,
+        "community": 38.0,
+        "agreement": 15,
+        "persistence": 0,
+        "total": 180
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 2,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        },
+        {
+          "source": "hn",
+          "rank": 63,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "votes": 31,
+          "comments": 1,
+          "observed_url": "https://news.ycombinator.com/item?id=49911520",
+          "published_at": "2026-09-30T16:59:37Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Sources: the US FTC has opened a probe of Anthropic, OpenAI, and other frontier AI labs over potential consumer harms, and plans to compel executives to testify",
+          "url": "https://nypost.com/2026/09/30/us-news/ftc-opens-sweeping-probe-of-anthropic-openai-and-other-super-intelligence-models"
+        },
+        {
+          "title": "FTC opens probe into AI giants including Anthropic and OpenAI",
+          "url": "https://reuters.com/business/ftc-opens-probe-into-ai-giants-including-anthropic-openai-new-york-post-reports-2026-09-30"
+        }
+      ],
+      "first_seen_at": "2026-09-30T21:00:25Z",
       "seen_windows": 1,
       "check_note": "Source headline retained; AI rewrite did not pass every publication check."
     },
@@ -93,7 +163,7 @@
         {
           "source": "techmeme",
           "rank": 6,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
         }
@@ -105,6 +175,78 @@
         }
       ],
       "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "7731340c2c3afc11",
+      "headline": "Sam Altman says OpenAI won\u2019t go public until its models are safe",
+      "url": "https://theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety",
+      "publisher": "theverge.com",
+      "fact": "",
+      "scope": "agents",
+      "category": "Reliability & security",
+      "headline_status": "source",
+      "points": 122,
+      "breakdown": {
+        "editorial": 121.5,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 122
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 9,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Sam Altman says OpenAI will not pursue an IPO until it can make confident safety claims about its AI models, but waiting too long would be \u201cbad for the world\u201d",
+          "url": "https://theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety"
+        }
+      ],
+      "first_seen_at": "2026-09-30T21:39:16Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "9eeb8fbd33a8bf55",
+      "headline": "\u201cWe\u2019re not going to shoot ourselves in the foot\u201d over hack fallout, says OpenAI\u2019s chief research officer",
+      "url": "https://technologyreview.com/2026/09/30/1145339/were-not-going-to-shoot-ourselves-in-the-foot-over-hugging-face-says-openais-chief-research-officer",
+      "publisher": "technologyreview.com",
+      "fact": "",
+      "scope": "agents",
+      "category": "Reliability & security",
+      "headline_status": "source",
+      "points": 118,
+      "breakdown": {
+        "editorial": 118.5,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 118
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 13,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "An interview with OpenAI Chief Research Officer Mark Chen on the Hugging Face incident, slowing AI development, shifting 5%-10% of compute to safety, and more",
+          "url": "https://technologyreview.com/2026/09/30/1145339/were-not-going-to-shoot-ourselves-in-the-foot-over-hugging-face-says-openais-chief-research-officer"
+        }
+      ],
+      "first_seen_at": "2026-09-30T21:00:25Z",
       "seen_windows": 1,
       "check_note": "Source headline retained; AI rewrite did not pass every publication check."
     },
@@ -129,7 +271,7 @@
         {
           "source": "techmeme",
           "rank": 25,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
         }
@@ -146,13 +288,13 @@
     },
     {
       "id": "0241e600b90d751e",
-      "headline": "Launch HN: Magnitude (YC S25) \u2013 Self-optimizing inference engine for agents",
+      "headline": "Magnitude launches local inference engine for coding agents",
       "url": "https://github.com/magnitudedev/magnitude",
       "publisher": "github.com",
-      "fact": "",
+      "fact": "Magnitude offers an open-source desktop inference engine that tunes kernels to local hardware and connects to agents including Codex, Claude Code, and OpenCode; its developers claim up to twice the speed of llama.cpp.",
       "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
+      "category": "Tools & harnesses",
+      "headline_status": "ai_checked",
       "points": 97,
       "breakdown": {
         "editorial": 0,
@@ -165,7 +307,7 @@
         {
           "source": "hn",
           "rank": 4,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "votes": 97,
           "comments": 43,
           "observed_url": "https://news.ycombinator.com/item?id=49911995",
@@ -180,17 +322,17 @@
       ],
       "first_seen_at": "2026-09-30T20:49:48Z",
       "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
     },
     {
-      "id": "2acab66ac7659b9f",
-      "headline": "Codex Pricing: Pro has unlimited 5.6 usage",
-      "url": "https://chatgpt.com/codex/pricing",
-      "publisher": "chatgpt.com",
-      "fact": "",
+      "id": "119800e739d775d3",
+      "headline": "Pi brings MCP support into its core",
+      "url": "https://earendil.com/posts/you-said-no-mcp",
+      "publisher": "earendil.com",
+      "fact": "Pi\u2019s developers say MCP is now built into the harness, using a JavaScript sandbox for tool composition and adding support for deferred tool loading and other modern model capabilities.",
       "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
+      "category": "Tools & harnesses",
+      "headline_status": "ai_checked",
       "points": 92,
       "breakdown": {
         "editorial": 0,
@@ -203,46 +345,8 @@
         {
           "source": "hn",
           "rank": 9,
-          "observed_at": "2026-09-30T21:33:25Z",
-          "votes": 5,
-          "comments": 3,
-          "observed_url": "https://news.ycombinator.com/item?id=49914539",
-          "published_at": "2026-09-30T21:13:02Z"
-        }
-      ],
-      "coverage": [
-        {
-          "title": "Codex Pricing: Pro has unlimited 5.6 usage",
-          "url": "https://chatgpt.com/codex/pricing"
-        }
-      ],
-      "first_seen_at": "2026-09-30T21:27:51Z",
-      "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
-    },
-    {
-      "id": "119800e739d775d3",
-      "headline": "\u201cYou Said No MCP!\u201d | Earendil",
-      "url": "https://earendil.com/posts/you-said-no-mcp",
-      "publisher": "earendil.com",
-      "fact": "",
-      "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
-      "points": 91,
-      "breakdown": {
-        "editorial": 0,
-        "community": 91.0,
-        "agreement": 0,
-        "persistence": 0,
-        "total": 91
-      },
-      "observations": [
-        {
-          "source": "hn",
-          "rank": 10,
-          "observed_at": "2026-09-30T21:33:25Z",
-          "votes": 558,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "votes": 559,
           "comments": 323,
           "observed_url": "https://news.ycombinator.com/item?id=49906637",
           "published_at": "2026-09-30T09:55:23Z"
@@ -256,31 +360,69 @@
       ],
       "first_seen_at": "2026-09-30T20:49:48Z",
       "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
     },
     {
-      "id": "43af959064d90d37",
-      "headline": "Strata \u2014 high-performance, AI-safe self-service analytics",
-      "url": "https://strata.do/",
-      "publisher": "strata.do",
-      "fact": "",
+      "id": "9ee133e6f5024f08",
+      "headline": "Opus 5.5 nerf benchmark has collected seven of 30 days",
+      "url": "https://github.com/ninjahawk/livenerf",
+      "publisher": "github.com",
+      "fact": "The benchmark project says its preregistered daily series has collected seven baseline days and will not produce its first results until around October 24; it does not yet establish model degradation.",
       "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
-      "points": 55,
+      "category": "Reliability & security",
+      "headline_status": "ai_checked",
+      "points": 54,
       "breakdown": {
         "editorial": 0,
-        "community": 55.0,
+        "community": 54.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 55
+        "total": 54
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 46,
-          "observed_at": "2026-09-30T21:33:25Z",
-          "votes": 15,
+          "rank": 47,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "votes": 864,
+          "comments": 371,
+          "observed_url": "https://news.ycombinator.com/item?id=49901736",
+          "published_at": "2026-09-29T22:36:14Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Livenerf: Has Opus 5.5 been nerfed yet?",
+          "url": "https://github.com/ninjahawk/livenerf"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
+    },
+    {
+      "id": "43af959064d90d37",
+      "headline": "Strata launches governed data layer for analytics agents",
+      "url": "https://strata.do/",
+      "publisher": "strata.do",
+      "fact": "Strata says its semantic layer lets agents query governed live data with row-level security and refuses semantically invalid queries; its marketing claims are not independently verified.",
+      "scope": "agents",
+      "category": "Tools & harnesses",
+      "headline_status": "ai_checked",
+      "points": 53,
+      "breakdown": {
+        "editorial": 0,
+        "community": 53.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 53
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 48,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "votes": 16,
           "comments": 7,
           "observed_url": "https://news.ycombinator.com/item?id=49909913",
           "published_at": "2026-09-30T14:59:57Z"
@@ -294,45 +436,7 @@
       ],
       "first_seen_at": "2026-09-30T20:49:48Z",
       "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
-    },
-    {
-      "id": "9ee133e6f5024f08",
-      "headline": "GitHub - ninjahawk/livenerf: Benchmark for tracking model capability after release.",
-      "url": "https://github.com/ninjahawk/livenerf",
-      "publisher": "github.com",
-      "fact": "",
-      "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
-      "points": 53,
-      "breakdown": {
-        "editorial": 0,
-        "community": 53.0,
-        "agreement": 0,
-        "persistence": 0,
-        "total": 53
-      },
-      "observations": [
-        {
-          "source": "hn",
-          "rank": 48,
-          "observed_at": "2026-09-30T21:33:25Z",
-          "votes": 862,
-          "comments": 369,
-          "observed_url": "https://news.ycombinator.com/item?id=49901736",
-          "published_at": "2026-09-29T22:36:14Z"
-        }
-      ],
-      "coverage": [
-        {
-          "title": "Livenerf: Has Opus 5.5 been nerfed yet?",
-          "url": "https://github.com/ninjahawk/livenerf"
-        }
-      ],
-      "first_seen_at": "2026-09-30T20:49:48Z",
-      "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
     },
     {
       "id": "569a64b3b1774494",
@@ -341,7 +445,7 @@
       "publisher": "latent.space",
       "fact": "",
       "scope": "coding",
-      "category": "Agent ecosystem",
+      "category": "Coding agents",
       "headline_status": "source",
       "points": 45,
       "breakdown": {
@@ -355,7 +459,7 @@
         {
           "source": "latent",
           "rank": 4,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "observed_url": "https://www.latent.space/feed",
           "published_at": "2026-09-29T01:48:18Z",
           "placement": "specialist editorial publication"
@@ -373,13 +477,13 @@
     },
     {
       "id": "634e24ac54432efb",
-      "headline": "[AINews] Opus 5.5 is good at explainer videos",
+      "headline": "Roundup reports Opus 5.5 coding evaluations and model comparisons",
       "url": "https://latent.space/p/ainews-opus-55-is-good-at-explainer",
       "publisher": "latent.space",
-      "fact": "",
+      "fact": "A roundup cites benchmark results and community reports for Opus 5.5 and other models, including coding-agent preferences; the reported evaluations and user impressions are attributed rather than independently verified.",
       "scope": "coding",
-      "category": "Agent ecosystem",
-      "headline_status": "source",
+      "category": "Models",
+      "headline_status": "ai_checked",
       "points": 45,
       "breakdown": {
         "editorial": 45,
@@ -392,7 +496,7 @@
         {
           "source": "latent",
           "rank": 3,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "observed_at": "2026-09-30T21:39:16Z",
           "observed_url": "https://www.latent.space/feed",
           "published_at": "2026-09-29T02:44:29Z",
           "placement": "specialist editorial publication"
@@ -406,7 +510,44 @@
       ],
       "first_seen_at": "2026-09-30T20:49:48Z",
       "seen_windows": 1,
-      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
+    },
+    {
+      "id": "65f819db5fc250ec",
+      "headline": "OpenAI DevDay roundup describes GPT-6.1 Sol and new agent tools",
+      "url": "https://latent.space/p/ainews-openai-devday-2026-dots-61",
+      "publisher": "latent.space",
+      "fact": "A roundup reports GPT-6.1 Sol, always-on Dots agents, Codex updates, and other platform launches, while attributing performance comparisons and rollout details to OpenAI or early reports.",
+      "scope": "coding",
+      "category": "Models",
+      "headline_status": "ai_checked",
+      "points": 45,
+      "breakdown": {
+        "editorial": 45,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 45
+      },
+      "observations": [
+        {
+          "source": "latent",
+          "rank": 1,
+          "observed_at": "2026-09-30T21:39:16Z",
+          "observed_url": "https://www.latent.space/feed",
+          "published_at": "2026-09-30T05:53:10Z",
+          "placement": "specialist editorial publication"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "[AINews] OpenAI DevDay 2026: Dots, 6.1 Sol, Ultrafast, Decisions API, Agents API, Spaces, Marketplace, and 1.2 Billion ChatGPT WAU",
+          "url": "https://latent.space/p/ainews-openai-devday-2026-dots-61"
+        }
+      ],
+      "first_seen_at": "2026-09-30T21:39:16Z",
+      "seen_windows": 1,
+      "check_note": "AI factual check passed against retrieved article text; not independent verification."
     },
     {
       "id": "d6b9f5e651b1891e",
@@ -417,19 +558,19 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 36,
+      "points": 39,
       "breakdown": {
         "editorial": 0,
-        "community": 36.0,
+        "community": 39.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 36
+        "total": 39
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 65,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "rank": 62,
+          "observed_at": "2026-09-30T21:39:16Z",
           "votes": 1041,
           "comments": 928,
           "observed_url": "https://news.ycombinator.com/item?id=49896586",
@@ -455,19 +596,19 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 9,
+      "points": 8,
       "breakdown": {
         "editorial": 0,
-        "community": 9.0,
+        "community": 8.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 9
+        "total": 8
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 92,
-          "observed_at": "2026-09-30T21:33:25Z",
+          "rank": 93,
+          "observed_at": "2026-09-30T21:39:16Z",
           "votes": 422,
           "comments": 136,
           "observed_url": "https://news.ycombinator.com/item?id=49890226",
