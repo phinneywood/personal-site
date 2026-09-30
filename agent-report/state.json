@@ -2,8 +2,8 @@
   "version": 1,
   "budget": {
     "2026-09": {
-      "used_upper_usd": 0.0299547,
-      "calls": 9,
+      "used_upper_usd": 0.0400357,
+      "calls": 10,
       "note": "Authorized initial Luna/Sol comparison"
     }
   },
