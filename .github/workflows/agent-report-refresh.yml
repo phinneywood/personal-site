@@ -1,0 +1,41 @@
+name: Agent Report refresh
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main, agent-report-build]
+    paths: ['scripts/agent-report/**', '.github/workflows/agent-report-refresh.yml']
+permissions:
+  contents: write
+concurrency:
+  group: agent-report-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main' || github.event.head_commit.message == 'Validate Agent Report live refresh'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/agent-report/requirements.txt
+      - run: python -m unittest discover -s scripts/agent-report -p 'test_*.py'
+      - name: Collect, check and publish feed data
+        env:
+          OPENAI_API_KEY: ${{ secrets.AGENT_REPORT_OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/agent-report/refresh.py --publish
+      - name: Retain operational evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: agent-report-refresh
+          path: .agent-report-output/
+          retention-days: 14
+          if-no-files-found: ignore
+          include-hidden-files: true

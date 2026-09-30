@@ -1,0 +1,486 @@
+{
+  "version": 1,
+  "generated_at": "2026-09-30T20:49:48Z",
+  "refresh_checked_at": "2026-09-30T20:49:48Z",
+  "status": "degraded",
+  "source_health": [
+    {
+      "source": "techmeme",
+      "status": "ok",
+      "count": 16,
+      "checked_at": "2026-09-30T20:49:48Z",
+      "newest_article_at": null
+    },
+    {
+      "source": "hn",
+      "status": "ok",
+      "count": 11,
+      "checked_at": "2026-09-30T20:49:48Z",
+      "newest_article_at": null
+    },
+    {
+      "source": "smol",
+      "status": "stale",
+      "count": 0,
+      "checked_at": "2026-09-30T20:49:48Z",
+      "newest_article_at": "2026-09-09T05:44:39Z"
+    },
+    {
+      "source": "latent",
+      "status": "ok",
+      "count": 3,
+      "checked_at": "2026-09-30T20:49:48Z",
+      "newest_article_at": "2026-09-30T05:53:10Z"
+    }
+  ],
+  "editorial_status": "source_headlines",
+  "candidate_count": 30,
+  "stories": [
+    {
+      "id": "8bd6213009738987",
+      "headline": "Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks",
+      "url": "https://axios.com/2026/09/30/google-gemini-4",
+      "publisher": "axios.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 128,
+      "breakdown": {
+        "editorial": 127.5,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 128
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 1,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Google rolls out Gemini 4 Argon to a small group of cybersecurity partners and says it outperforms GPT-6 Astra on certain coding and knowledge work benchmarks",
+          "url": "https://axios.com/2026/09/30/google-gemini-4"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "883097d6fe96afe8",
+      "headline": "DoorDash opens US waitlists for an Apple Messages-integrated AI agent and a MCP server for organizations to allow enterprise AI bots to place bulk orders",
+      "url": "https://bloomberg.com/news/articles/2026-09-30/doordash-unveils-text-to-order-ai-agent-that-works-with-apple-s-imessage",
+      "publisher": "bloomberg.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 124,
+      "breakdown": {
+        "editorial": 124.5,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 124
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 5,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "DoorDash opens US waitlists for an Apple Messages-integrated AI agent and a MCP server for organizations to allow enterprise AI bots to place bulk orders",
+          "url": "https://bloomberg.com/news/articles/2026-09-30/doordash-unveils-text-to-order-ai-agent-that-works-with-apple-s-imessage"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "5282e4b545197f38",
+      "headline": "Documents: 20+ studies since 2025 show Chinese-powered AI agents displaying deceptive behavior, unprompted replication, and barrier circumvention in testing",
+      "url": "https://reuters.com/business/retail-consumer/chinas-ai-agents-can-lie-scheme-just-like-their-us-rivals-2026-09-29",
+      "publisher": "reuters.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 110,
+      "breakdown": {
+        "editorial": 110.25,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 110
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 24,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Documents: 20+ studies since 2025 show Chinese-powered AI agents displaying deceptive behavior, unprompted replication, and barrier circumvention in testing",
+          "url": "https://reuters.com/business/retail-consumer/chinas-ai-agents-can-lie-scheme-just-like-their-us-rivals-2026-09-29"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "94071c6c64ce498c",
+      "headline": "Metaview, which uses AI agents to automate recruiting workflows, raised a $60M Series C led by Insight Partners, bringing its total funding to $110M",
+      "url": "https://axios.com/pro/enterprise-software-deals/2026/09/30/agentic-recruiting-metaview-60m",
+      "publisher": "axios.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 109,
+      "breakdown": {
+        "editorial": 108.75,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 109
+      },
+      "observations": [
+        {
+          "source": "techmeme",
+          "rank": 26,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.techmeme.com/",
+          "placement": "main headline"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Metaview, which uses AI agents to automate recruiting workflows, raised a $60M Series C led by Insight Partners, bringing its total funding to $110M",
+          "url": "https://axios.com/pro/enterprise-software-deals/2026/09/30/agentic-recruiting-metaview-60m"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "0241e600b90d751e",
+      "headline": "Launch HN: Magnitude (YC S25) \u2013 Self-optimizing inference engine for agents",
+      "url": "https://github.com/magnitudedev/magnitude",
+      "publisher": "github.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 97,
+      "breakdown": {
+        "editorial": 0,
+        "community": 97.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 97
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 4,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 89,
+          "comments": 42,
+          "observed_url": "https://news.ycombinator.com/item?id=49911995",
+          "published_at": "2026-09-30T17:37:40Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Launch HN: Magnitude (YC S25) \u2013 Self-optimizing inference engine for agents",
+          "url": "https://github.com/magnitudedev/magnitude"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "119800e739d775d3",
+      "headline": "You said no MCP",
+      "url": "https://earendil.com/posts/you-said-no-mcp",
+      "publisher": "earendil.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 93,
+      "breakdown": {
+        "editorial": 0,
+        "community": 93.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 93
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 8,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 545,
+          "comments": 316,
+          "observed_url": "https://news.ycombinator.com/item?id=49906637",
+          "published_at": "2026-09-30T09:55:23Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "You said no MCP",
+          "url": "https://earendil.com/posts/you-said-no-mcp"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "43af959064d90d37",
+      "headline": "Show HN: Strata \u2013 an expressive semantic layer that can say no to your LLM",
+      "url": "https://strata.do/",
+      "publisher": "strata.do",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 67,
+      "breakdown": {
+        "editorial": 0,
+        "community": 67.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 67
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 34,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 14,
+          "comments": 7,
+          "observed_url": "https://news.ycombinator.com/item?id=49909913",
+          "published_at": "2026-09-30T14:59:57Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Show HN: Strata \u2013 an expressive semantic layer that can say no to your LLM",
+          "url": "https://strata.do/"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "9ee133e6f5024f08",
+      "headline": "Livenerf: Has Opus 5.5 been nerfed yet?",
+      "url": "https://github.com/ninjahawk/livenerf",
+      "publisher": "github.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 63,
+      "breakdown": {
+        "editorial": 0,
+        "community": 63.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 63
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 38,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 859,
+          "comments": 367,
+          "observed_url": "https://news.ycombinator.com/item?id=49901736",
+          "published_at": "2026-09-29T22:36:14Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Livenerf: Has Opus 5.5 been nerfed yet?",
+          "url": "https://github.com/ninjahawk/livenerf"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "569a64b3b1774494",
+      "headline": "Claude Code\u2019s Next Era \u2014 Thariq Shihipar, Anthropic",
+      "url": "https://latent.space/p/thariq",
+      "publisher": "latent.space",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 45,
+      "breakdown": {
+        "editorial": 45,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 45
+      },
+      "observations": [
+        {
+          "source": "latent",
+          "rank": 4,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.latent.space/feed",
+          "published_at": "2026-09-29T01:48:18Z",
+          "placement": "specialist editorial publication"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "Claude Code\u2019s Next Era \u2014 Thariq Shihipar, Anthropic",
+          "url": "https://latent.space/p/thariq"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "634e24ac54432efb",
+      "headline": "[AINews] Opus 5.5 is good at explainer videos",
+      "url": "https://latent.space/p/ainews-opus-55-is-good-at-explainer",
+      "publisher": "latent.space",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 45,
+      "breakdown": {
+        "editorial": 45,
+        "community": 0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 45
+      },
+      "observations": [
+        {
+          "source": "latent",
+          "rank": 3,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "observed_url": "https://www.latent.space/feed",
+          "published_at": "2026-09-29T02:44:29Z",
+          "placement": "specialist editorial publication"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "[AINews] Opus 5.5 is good at explainer videos",
+          "url": "https://latent.space/p/ainews-opus-55-is-good-at-explainer"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "d6b9f5e651b1891e",
+      "headline": "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "publisher": "openai.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 45,
+      "breakdown": {
+        "editorial": 0,
+        "community": 45.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 45
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 56,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 1040,
+          "comments": 924,
+          "observed_url": "https://news.ycombinator.com/item?id=49896586",
+          "published_at": "2026-09-29T17:06:45Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    },
+    {
+      "id": "54b60c2eb49b307d",
+      "headline": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
+      "url": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf",
+      "publisher": "jorgegarciaherrero.com",
+      "fact": "",
+      "scope": "coding",
+      "category": "Agent ecosystem",
+      "headline_status": "source",
+      "points": 24,
+      "breakdown": {
+        "editorial": 0,
+        "community": 24.0,
+        "agreement": 0,
+        "persistence": 0,
+        "total": 24
+      },
+      "observations": [
+        {
+          "source": "hn",
+          "rank": 77,
+          "observed_at": "2026-09-30T20:49:48Z",
+          "votes": 421,
+          "comments": 136,
+          "observed_url": "https://news.ycombinator.com/item?id=49890226",
+          "published_at": "2026-09-29T09:03:41Z"
+        }
+      ],
+      "coverage": [
+        {
+          "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
+          "url": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf"
+        }
+      ],
+      "first_seen_at": "2026-09-30T20:49:48Z",
+      "seen_windows": 1,
+      "check_note": "Source headline retained; AI rewrite did not pass every publication check."
+    }
+  ]
+}
