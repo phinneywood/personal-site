@@ -1,0 +1,86 @@
+[
+  {
+    "id": "C01",
+    "kind": "captured source brief",
+    "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+    "text": "OpenAI pitches stronger agentic coding at lower cost than Astra. GitHub confirms a gradual Copilot rollout. Vendor performance claims remain attributed. Launch and pricing checked against OpenAI; Copilot availability checked against GitHub. Benchmark comparisons are vendor-reported."
+  },
+  {
+    "id": "C02",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+    "text": "Launch and pricing checked against OpenAI; Copilot availability checked against GitHub. Benchmark comparisons are vendor-reported. OpenAI pitches stronger agentic coding at lower cost than Astra. GitHub confirms a gradual Copilot rollout. Vendor performance claims remain attributed."
+  },
+  {
+    "id": "C03",
+    "kind": "captured source brief",
+    "url": "https://earendil.com/posts/you-said-no-mcp/",
+    "text": "Earendil explains how Pi now combines MCP with JavaScript-based tool orchestration as its harness evolves. The author\u2019s post confirms support and explains the design. This snapshot does not establish adoption or reliability gains."
+  },
+  {
+    "id": "C04",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://earendil.com/posts/you-said-no-mcp/",
+    "text": "The author\u2019s post confirms support and explains the design. This snapshot does not establish adoption or reliability gains. Earendil explains how Pi now combines MCP with JavaScript-based tool orchestration as its harness evolves."
+  },
+  {
+    "id": "C05",
+    "kind": "captured source brief",
+    "url": "https://github.com/ninjahawk/livenerf",
+    "text": "An open benchmark is collecting an Opus 5.5 baseline. Its maintainers have not yet reached a performance-regression verdict. Repository status reports baseline collection. The provocative HN framing is not treated as proof that the model has deteriorated."
+  },
+  {
+    "id": "C06",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://github.com/ninjahawk/livenerf",
+    "text": "Repository status reports baseline collection. The provocative HN framing is not treated as proof that the model has deteriorated. An open benchmark is collecting an Opus 5.5 baseline. Its maintainers have not yet reached a performance-regression verdict."
+  },
+  {
+    "id": "C07",
+    "kind": "captured source brief",
+    "url": "https://help.openai.com/ml-in/articles/20001545-using-codex-cloud",
+    "text": "OpenAI documents prepared cloud environments that let coding tasks continue across devices. Access is rolling out gradually. Reusable environments, cross-device tasks and gradual availability checked against OpenAI\u2019s cloud documentation."
+  },
+  {
+    "id": "C08",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://help.openai.com/ml-in/articles/20001545-using-codex-cloud",
+    "text": "Reusable environments, cross-device tasks and gradual availability checked against OpenAI\u2019s cloud documentation. OpenAI documents prepared cloud environments that let coding tasks continue across devices. Access is rolling out gradually."
+  },
+  {
+    "id": "C09",
+    "kind": "captured source brief",
+    "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
+    "text": "Anthropic\u2019s evaluation reports end-to-end exploit development by an open-weight model. Findings remain attributed to the evaluating lab. The evaluation report was checked directly. This prototype does not independently reproduce the findings."
+  },
+  {
+    "id": "C10",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
+    "text": "The evaluation report was checked directly. This prototype does not independently reproduce the findings. Anthropic\u2019s evaluation reports end-to-end exploit development by an open-weight model. Findings remain attributed to the evaluating lab."
+  },
+  {
+    "id": "C11",
+    "kind": "captured source brief",
+    "url": "https://openai.com/index/introducing-dots/",
+    "text": "OpenAI announces cloud-based agents for work across connected apps. Broader agent coverage brings this development onto the page. The announcement confirms cloud computers and a staged rollout. General-purpose agent scope is a deliberate editorial choice."
+  },
+  {
+    "id": "C12",
+    "kind": "synthetic duplicate fixture, not another observed publication",
+    "url": "https://openai.com/index/introducing-dots/",
+    "text": "The announcement confirms cloud computers and a staged rollout. General-purpose agent scope is a deliberate editorial choice. OpenAI announces cloud-based agents for work across connected apps. Broader agent coverage brings this development onto the page."
+  },
+  {
+    "id": "C13",
+    "kind": "synthetic distinct-event fixture",
+    "url": null,
+    "text": "Hypothetical later event: OpenAI changes GPT-6.1 Sol API pricing a month after launch. This is a new pricing change, not launch or Copilot availability."
+  },
+  {
+    "id": "C14",
+    "kind": "synthetic distinct-event fixture",
+    "url": null,
+    "text": "Hypothetical unrelated event: Pi publishes a security patch for an MCP connector bug two months after MCP support launched. This is a security fix, not the support announcement."
+  }
+]

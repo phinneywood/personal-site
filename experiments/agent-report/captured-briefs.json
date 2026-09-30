@@ -1,0 +1,49 @@
+[
+  {
+    "id": "sol",
+    "summary": "OpenAI pitches stronger agentic coding at lower cost than Astra. GitHub confirms a gradual Copilot rollout. Vendor performance claims remain attributed.",
+    "check": "Launch and pricing checked against OpenAI; Copilot availability checked against GitHub. Benchmark comparisons are vendor-reported.",
+    "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+    "links": [
+      {
+        "name": "GitHub rollout",
+        "url": "https://github.blog/changelog/2026-09-29-gpt-6-1-sol-in-github-copilot/"
+      }
+    ]
+  },
+  {
+    "id": "pi",
+    "summary": "Earendil explains how Pi now combines MCP with JavaScript-based tool orchestration as its harness evolves.",
+    "check": "The author’s post confirms support and explains the design. This snapshot does not establish adoption or reliability gains.",
+    "url": "https://earendil.com/posts/you-said-no-mcp/",
+    "links": []
+  },
+  {
+    "id": "livenerf",
+    "summary": "An open benchmark is collecting an Opus 5.5 baseline. Its maintainers have not yet reached a performance-regression verdict.",
+    "check": "Repository status reports baseline collection. The provocative HN framing is not treated as proof that the model has deteriorated.",
+    "url": "https://github.com/ninjahawk/livenerf",
+    "links": []
+  },
+  {
+    "id": "codex",
+    "summary": "OpenAI documents prepared cloud environments that let coding tasks continue across devices. Access is rolling out gradually.",
+    "check": "Reusable environments, cross-device tasks and gradual availability checked against OpenAI’s cloud documentation.",
+    "url": "https://help.openai.com/ml-in/articles/20001545-using-codex-cloud",
+    "links": []
+  },
+  {
+    "id": "glm",
+    "summary": "Anthropic’s evaluation reports end-to-end exploit development by an open-weight model. Findings remain attributed to the evaluating lab.",
+    "check": "The evaluation report was checked directly. This prototype does not independently reproduce the findings.",
+    "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
+    "links": []
+  },
+  {
+    "id": "dots",
+    "summary": "OpenAI announces cloud-based agents for work across connected apps. Broader agent coverage brings this development onto the page.",
+    "check": "The announcement confirms cloud computers and a staged rollout. General-purpose agent scope is a deliberate editorial choice.",
+    "url": "https://openai.com/index/introducing-dots/",
+    "links": []
+  }
+]
