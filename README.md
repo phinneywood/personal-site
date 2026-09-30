@@ -40,3 +40,7 @@ The approved biography is one paragraph. Long Form remains linked to `https://re
 ## Status
 
 The site is publicly reachable at https://antonioskilton.com. Live HTML was verified during the profile presentation review. It still includes the preview `noindex, nofollow` directive; search-indexing cleanup remains a separate launch follow-up. This documentation update does not change site code, deployment configuration, or DNS.
+
+## Agent Report
+
+Agent Report adds a separate news page at `/agent-report`, a four-hour feed refresh pipeline and RSS. It reuses this hosting without changing the portfolio biography. See [operation, ranking and budget documentation](docs/agent-report/README.md). The API key remains in GitHub Actions; feed data lives on the isolated `agent-report-data` branch.

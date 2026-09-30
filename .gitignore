@@ -5,3 +5,7 @@ dist/
 .env*
 .DS_Store
 preview/
+.agent-report-output/
+.agent-report-browser/
+.agent-report-public/
+__pycache__/
