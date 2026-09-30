@@ -27,7 +27,7 @@ jobs:
         if: hashFiles('experiments/agent-report/RUN_APPROVED') != ''
         env:
           OPENAI_API_KEY: ${{ secrets.AGENT_REPORT_OPENAI_API_KEY }}
-        run: python experiments/agent-report/run.py
+        run: python experiments/agent-report/run.py --resume
       - name: Retain experiment results
         if: always() && hashFiles('experiments/agent-report/results/**') != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
