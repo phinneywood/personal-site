@@ -1,6 +1,7 @@
 """Live Agent Report ingestion, deterministic ranking, bounded Luna editorial checks.
 
 Only --publish writes the isolated data branch. No secrets or article bodies are saved.
+Publication policy: automatic checked rewrites, with source-headline fallback.
 """
 import argparse
 import concurrent.futures
