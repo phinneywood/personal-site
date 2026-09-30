@@ -1,6 +1,9 @@
 """Exercise the built page and public feed in a real Chromium browser."""
 import argparse
+import datetime as dt
+import email.utils
 import json
+import os
 from pathlib import Path
 import time
 import urllib.request
@@ -11,6 +14,18 @@ from playwright.sync_api import sync_playwright
 
 def verify(url, output, live=False):
     output.mkdir(parents=True, exist_ok=True)
+    expected_date = None
+    if live:
+        # Resolve the immutable published data commit, rather than comparing
+        # two potentially stale public endpoints with one another.
+        headers = {"User-Agent": "AgentReportVerification", "Accept": "application/vnd.github+json"}
+        if os.environ.get("GITHUB_TOKEN"):
+            headers["Authorization"] = "Bearer " + os.environ["GITHUB_TOKEN"]
+        request = urllib.request.Request("https://api.github.com/repos/phinneywood/personal-site/git/ref/heads/agent-report-data", headers=headers)
+        with urllib.request.urlopen(request, timeout=20) as response:
+            sha = json.load(response)["object"]["sha"]
+        with urllib.request.urlopen(f"https://raw.githubusercontent.com/phinneywood/personal-site/{sha}/agent-report/latest.json", timeout=20) as response:
+            expected_date = json.load(response)["generated_at"]
     for attempt in range(24):
         try:
             with urllib.request.urlopen(url, timeout=10) as response:
@@ -38,6 +53,8 @@ def verify(url, output, live=False):
         data_response = page.request.get(url.rstrip("/") + "/current.json")
         assert data_response.ok
         edition = data_response.json()
+        if live:
+            assert edition["generated_at"] >= expected_date, f"Public JSON is stale: {edition['generated_at']} < {expected_date}"
         assert count == len(edition["stories"])
         original_time = page.locator("#edition-time").get_attribute("datetime")
         assert original_time == edition["generated_at"]
@@ -60,7 +77,9 @@ def verify(url, output, live=False):
         if live:
             rss = page.request.get(url.rstrip("/") + "/feed.xml")
             assert rss.ok
-            assert len(ET.fromstring(rss.text()).findall("channel/item")) >= 5
+            root = ET.fromstring(rss.text())
+            assert len(root.findall("channel/item")) >= 5
+            assert email.utils.parsedate_to_datetime(root.findtext("channel/lastBuildDate")) >= dt.datetime.fromisoformat(expected_date.replace("Z", "+00:00")), "Public RSS is stale"
         page.route("**/agent-report/current.json", lambda route: route.abort())
         page.locator("#refresh").click()
         page.wait_for_function("!document.querySelector('#refresh').disabled")
@@ -74,9 +93,9 @@ def verify(url, output, live=False):
         assert fallback.locator("#front-page article").count() >= 5
         assert fallback.locator("noscript").inner_text()
         browser.close()
-    report = {"url": url, "status": "passed", "stories": count, "generated_at": original_time,
+    report = {"url": url, "status": "passed", "stories": count, "generated_at": original_time, "published_data_at": expected_date,
               "viewports": ["1280x900", "390x844"], "page_errors": errors,
-              "verified": ["live JSON", "points and evidence", "scope filter", "refresh", "three desktop columns", "one mobile column", "single-line metadata", "offline last-good retention", "no-JavaScript fallback"] + (["public RSS"] if live else [])}
+              "verified": ["JSON retrieval", "points and evidence", "scope filter", "refresh", "three desktop columns", "one mobile column", "single-line metadata", "offline last-good retention", "no-JavaScript fallback"] + (["public JSON freshness against immutable data commit", "public RSS freshness"] if live else [])}
     (output / "verification.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report))
 

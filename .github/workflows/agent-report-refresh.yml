@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main, agent-report-build]
-    paths: ['scripts/agent-report/**', '.github/workflows/agent-report-refresh.yml']
+    paths: ['scripts/agent-report/refresh.py', 'scripts/agent-report/extract_article.py', 'scripts/agent-report/requirements.txt', '.github/workflows/agent-report-refresh.yml']
 permissions:
   contents: write
 concurrency:
