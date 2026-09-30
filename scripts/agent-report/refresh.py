@@ -35,7 +35,7 @@ MODEL = "gpt-6-luna"
 MONTHLY_LIMIT = 9.50  # Reserve room within the user's $10 allowance.
 MAX_CARDS = 36
 MAX_TEXT = 3600
-MAX_OUTPUT = 6000
+MAX_OUTPUT = 12000
 UA = "AgentReport/1.0 (+https://antonioskilton.com/agent-report)"
 EXTRACTOR = pathlib.Path(__file__).with_name("extract_article.py")
 UTC = dt.timezone.utc
@@ -280,7 +280,9 @@ CHECK_PROMPT = """Independently audit each proposed group and its headline AND f
 def parse_final(raw):
     if raw.get("status") != "completed":
         raise ValueError("Incomplete model response")
-    messages = [m for m in raw.get("output", []) if m.get("type") == "message" and m.get("phase") in (None, "final_answer")]
+    messages = [m for m in raw.get("output", []) if m.get("type") == "message" and m.get("phase") == "final_answer"]
+    if not messages:
+        messages = [m for m in raw.get("output", []) if m.get("type") == "message" and m.get("phase") is None]
     if len(messages) != 1:
         raise ValueError("Expected one final answer")
     return json.loads("".join(c.get("text", "") for c in messages[0].get("content", []) if c.get("type") == "output_text"))
@@ -414,7 +416,7 @@ class Editorial:
         start = time.monotonic()
         req = urllib.request.Request("https://api.openai.com/v1/responses", data=json.dumps(body).encode(),
             headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as r:
+        with urllib.request.urlopen(req, timeout=120) as r:
             raw = json.load(r)
         usage = raw.get("usage")
         if not usage or raw.get("model") != MODEL:
@@ -423,6 +425,8 @@ class Editorial:
         self.ledger["used_upper_usd"] = round(self.ledger["used_upper_usd"] - bound + actual, 8)
         self.store.save(self.state)
         self.calls.append({"model": raw["model"], "input_tokens": usage["input_tokens"], "output_tokens": usage["output_tokens"],
+                           "reasoning_tokens": usage.get("output_tokens_details", {}).get("reasoning_tokens", 0),
+                           "message_phases": [m.get("phase") for m in raw.get("output", []) if m.get("type") == "message"],
                            "estimated_usd": actual, "seconds": round(time.monotonic() - start, 2), "status": raw.get("status")})
         return parse_final(raw)
 

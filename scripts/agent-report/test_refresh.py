@@ -69,6 +69,8 @@ class RefreshTests(unittest.TestCase):
     def test_final_answer_does_not_parse_commentary(self):
         raw = {"status": "completed", "output": [{"type": "message", "phase": "commentary", "content": [{"type": "output_text", "text": "not JSON"}]}, {"type": "message", "phase": "final_answer", "content": [{"type": "output_text", "text": '{"groups":[]}'}]}]}
         self.assertEqual(r.parse_final(raw), {"groups": []})
+        raw["output"][0]["phase"] = None
+        self.assertEqual(r.parse_final(raw), {"groups": []})
         raw["status"] = "incomplete"
         with self.assertRaises(ValueError): r.parse_final(raw)
 
