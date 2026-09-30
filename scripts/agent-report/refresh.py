@@ -17,6 +17,7 @@ import os
 import pathlib
 import re
 import socket
+import subprocess
 import sys
 import time
 import urllib.error
@@ -26,7 +27,6 @@ import xml.etree.ElementTree as ET
 
 from bs4 import BeautifulSoup
 import feedparser
-import trafilatura
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 REPO = "phinneywood/personal-site"
@@ -37,6 +37,7 @@ MAX_CARDS = 36
 MAX_TEXT = 3600
 MAX_OUTPUT = 6000
 UA = "AgentReport/1.0 (+https://antonioskilton.com/agent-report)"
+EXTRACTOR = pathlib.Path(__file__).with_name("extract_article.py")
 UTC = dt.timezone.utc
 DISCOVERY = re.compile(r"\b(ai|agents?|agentic|coding|llms?|mcp|codex|copilot|claude|anthropic|openai|gpt[-\s]?\d|gemini|cursor|opus|sonnet|harness|inference|open[- ]weight|model context)\b", re.I)
 STRICT_SCOPE = re.compile(r"\b(agentic|coding|mcp|codex|copilot|claude code|cursor|coding agents?|ai agents?|llms?|open[- ]weight|harness|inference|gpt[-\s]?\d|opus|sonnet)\b", re.I)
@@ -241,14 +242,17 @@ def article(c):
     c = copy.deepcopy(c)
     try:
         data = download(c["url"])
-        text = trafilatura.extract(data, include_comments=False, include_tables=False) or ""
-        soup = BeautifulSoup(data, "html.parser")
-        meta = soup.find("meta", property="og:title")
-        original = meta.get("content", "") if meta else soup.title.get_text(" ", strip=True) if soup.title else ""
-        if len(original) > 8 and len(original) < 220 and not re.search(r"access denied|just a moment|page not found|sign in", original, re.I):
-            c["source_title"] = html.unescape(original)
-        c["article_text"] = text[:MAX_TEXT]
-        c["article_available"] = len(text) > 180
+        # Native HTML parsing is isolated per article. A libxml2 abort cannot
+        # kill the collector or discard all other stories. No credentials or
+        # HTTP access are required by the worker; bodies travel only via stdin.
+        result = subprocess.run([sys.executable, str(EXTRACTOR)], input=data,
+            capture_output=True, timeout=30, check=True,
+            env={"PATH": os.environ.get("PATH", ""), "LANG": "C.UTF-8", "PYTHONIOENCODING": "utf-8"})
+        extracted = json.loads(result.stdout)
+        c["article_text"] = extracted["article_text"][:MAX_TEXT]
+        c["article_available"] = len(c["article_text"]) > 180
+        if extracted.get("source_title"):
+            c["source_title"] = extracted["source_title"]
     except Exception:
         c["article_text"] = ""
         c["article_available"] = False
@@ -450,6 +454,7 @@ def refresh(args):
     store = DataStore(args.publish, pathlib.Path(args.output))
     state, previous = store.load()
     cards, health = collect(now)
+    print(json.dumps({"stage": "collected", "candidates": len(cards)}), flush=True)
     if not cards:
         if previous and previous.get("stories"):
             previous["refresh_checked_at"] = stamp(now)
@@ -461,6 +466,7 @@ def refresh(args):
     cards = cards[:MAX_CARDS]
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
         cards = list(pool.map(article, cards))
+    print(json.dumps({"stage": "extracted", "articles": sum(c["article_available"] for c in cards)}), flush=True)
     for i, c in enumerate(cards):
         c["id"] = f"C{i+1:02d}"
     # The model receives evidence, never prominence scores or website ordering.

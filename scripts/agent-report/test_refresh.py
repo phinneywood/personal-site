@@ -27,6 +27,22 @@ def check(index=0):
 
 
 class RefreshTests(unittest.TestCase):
+    def test_native_extractor_abort_is_contained_and_next_article_succeeds(self):
+        body = ("<html><head><title>Pi adds MCP support</title></head><body><article>" +
+                "<p>Pi adds native MCP support for coding agents, with access rolling out gradually to early users.</p>" * 12 +
+                "</article></body></html>").encode()
+        with tempfile.TemporaryDirectory() as directory:
+            crash = pathlib.Path(directory) / "crash.py"
+            crash.write_text("import os,resource\nresource.setrlimit(resource.RLIMIT_CORE,(0,0))\nos.abort()\n")
+            with patch.object(r, "download", return_value=body):
+                with patch.object(r, "EXTRACTOR", crash):
+                    failed = r.article(sample())
+                self.assertFalse(failed["article_available"])
+                self.assertEqual(failed["article_text"], "")
+                good = r.article(sample("C02"))
+                self.assertTrue(good["article_available"])
+                self.assertEqual(good["source_title"], "Pi adds MCP support")
+
     def test_identity_strips_tracking_and_rejects_unsafe_urls(self):
         self.assertEqual(r.canonical("https://www.example.com/story/?utm_source=x&accessToken=secret&a=1#here"), "https://example.com/story?a=1")
         for url in ["javascript:alert(1)", "https://user:pass@example.com", "https://example.com:8080"]:
