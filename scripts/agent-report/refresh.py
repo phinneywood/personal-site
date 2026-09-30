@@ -292,12 +292,52 @@ def groups_valid(groups, cards):
     return sorted(ids) == sorted(expected) and all(g["card_ids"] for g in groups)
 
 
+def repair_coverage(groups, cards):
+    """Keep unambiguous groups; isolate missing or multiply assigned cards.
+
+    Repairs never approve a headline or combine events: every resulting group
+    still goes through the independent audit and literal evidence gate.
+    """
+    counts = {c["id"]: 0 for c in cards}
+    unknown = 0
+    for g in groups:
+        for ident in g["card_ids"]:
+            if ident in counts:
+                counts[ident] += 1
+            else:
+                unknown += 1
+    repaired = []
+    for g in groups:
+        ids = [i for i in g["card_ids"] if counts.get(i) == 1]
+        if ids:
+            repaired.append({**g, "card_ids": ids})
+    isolated = [c for c in cards if counts[c["id"]] != 1]
+    repaired.extend(fallback_groups(isolated))
+    return repaired, {"missing": sum(n == 0 for n in counts.values()),
+                      "multiply_assigned": sum(n > 1 for n in counts.values()), "unknown_assignments": unknown}
+
+
 def evidence_matches(check, cards):
     quote = " ".join(check.get("evidence_quote", "").split()).casefold()
     if not quote or len(quote.split()) > 20:
         return False
     evidence = next((c for c in cards if c["id"] == check.get("evidence_card_id")), None)
     return bool(evidence and evidence["article_available"] and quote in " ".join(evidence["article_text"].split()).casefold())
+
+
+def repair_checks(checks, count):
+    counts = {i: 0 for i in range(count)}
+    unknown = 0
+    for c in checks:
+        if c["index"] in counts:
+            counts[c["index"]] += 1
+        else:
+            unknown += 1
+    # Ambiguous or missing checks grant no approval. build_stories splits and
+    # uses source headlines for those groups, while preserving valid audits.
+    return ([c for c in checks if counts.get(c["index"]) == 1],
+            {"missing": sum(n == 0 for n in counts.values()),
+             "multiply_assigned": sum(n > 1 for n in counts.values()), "unknown_checks": unknown})
 
 
 class DataStore:
@@ -473,15 +513,23 @@ def refresh(args):
     payload = [{k: c[k] for k in ("id", "url", "title", "summary", "article_text", "article_available")} for c in cards]
     editor = Editorial(state, store, now)
     groups, checks, editorial_status = fallback_groups(cards), [], "source_headlines"
+    coverage_repair, audit_repair, error_stage = None, None, None
     if not args.no_ai:
         try:
+            error_stage = "group_request"
             proposed = editor.call(GROUP_PROMPT, payload, GROUP_SCHEMA)["groups"]
+            error_stage = "group_coverage"
+            if not groups_valid(proposed, cards):
+                proposed, coverage_repair = repair_coverage(proposed, cards)
             if not groups_valid(proposed, cards):
                 raise ValueError("Grouping coverage invalid")
+            error_stage = "audit_request"
             result = editor.call(CHECK_PROMPT, {"cards": payload, "groups": proposed}, CHECK_SCHEMA)["checks"]
+            error_stage = "audit_coverage"
             if sorted(c["index"] for c in result) != list(range(len(proposed))):
-                raise ValueError("Check coverage invalid")
+                result, audit_repair = repair_checks(result, len(proposed))
             groups, checks, editorial_status = proposed, result, "checked"
+            error_stage = None
         except Exception as e:
             # No retries. Source-backed edition remains available even when AI fails.
             editorial_status = "fallback:" + type(e).__name__
@@ -497,6 +545,7 @@ def refresh(args):
     # Operational evidence excludes article bodies, quoted text and credentials.
     report = {"at": stamp(now), "sources": health, "candidate_count": len(cards), "article_extractions": sum(c["article_available"] for c in cards),
               "published_stories": len(stories), "ai_checked_headlines": sum(s["headline_status"] == "ai_checked" for s in stories), "editorial_status": editorial_status,
+              "coverage_repair": coverage_repair, "audit_repair": audit_repair, "editorial_error_stage": error_stage,
               "calls": editor.calls, "budget": state.get("budget", {}), "groups": [{"card_ids": g["card_ids"], "scope": g["scope"]} for g in groups],
               "checks": [{k: c[k] for k in ("index", "same_event", "relevant", "supported", "qualifiers_preserved", "reason")} for c in checks]}
     (store.directory / "run-report.json").write_text(json.dumps(report, indent=2))

@@ -80,12 +80,31 @@ class RefreshTests(unittest.TestCase):
         bad = check(); bad["evidence_quote"] = "Pi is proven better than every competitor."
         self.assertFalse(r.evidence_matches(bad, cards))
 
+    def test_incomplete_grouping_is_repaired_without_combining_ambiguous_cards(self):
+        cards = [sample(), sample("C02", url="https://example.com/second"), sample("C03", url="https://example.com/third")]
+        repaired, counts = r.repair_coverage([group(["C01", "C02"]), group(["C02", "UNKNOWN"])], cards)
+        self.assertTrue(r.groups_valid(repaired, cards))
+        self.assertEqual([g["card_ids"] for g in repaired], [["C01"], ["C02"], ["C03"]])
+        self.assertEqual(counts, {"missing": 1, "multiply_assigned": 1, "unknown_assignments": 1})
+        # A structural repair does not grant approval or source agreement.
+        stories = r.build_stories(cards, repaired, [], {}, NOW)
+        self.assertTrue(all(s["headline_status"] == "source" for s in stories))
+        self.assertTrue(all(s["breakdown"]["agreement"] == 0 for s in stories))
+
     def test_failed_qualifier_check_uses_original_headline(self):
         bad = check(); bad["qualifiers_preserved"] = False
         stories = r.build_stories([sample()], [group(["C01"])], [bad], {}, NOW)
         self.assertEqual(stories[0]["headline"], "Pi adds MCP support")
         self.assertEqual(stories[0]["headline_status"], "source")
         self.assertEqual(stories[0]["fact"], "")
+
+    def test_incomplete_audit_preserves_only_unique_checks(self):
+        repaired, counts = r.repair_checks([check(0), check(1), check(1), check(99)], 3)
+        self.assertEqual([c["index"] for c in repaired], [0])
+        self.assertEqual(counts, {"missing": 1, "multiply_assigned": 1, "unknown_checks": 1})
+        cards = [sample(), sample("C02", url="https://example.com/second"), sample("C03", url="https://example.com/third")]
+        stories = r.build_stories(cards, [group([c["id"]]) for c in cards], repaired, {}, NOW)
+        self.assertEqual(sum(s["headline_status"] == "ai_checked" for s in stories), 1)
 
     def test_bad_merge_does_not_combine_attention(self):
         cards = [sample(), sample("C02", title="Pi MCP security patch", source="techmeme", url="https://example.com/security")]
