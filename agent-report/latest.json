@@ -1,35 +1,35 @@
 {
   "version": 1,
-  "generated_at": "2026-09-30T21:27:51Z",
-  "refresh_checked_at": "2026-09-30T21:27:51Z",
+  "generated_at": "2026-09-30T21:33:25Z",
+  "refresh_checked_at": "2026-09-30T21:33:25Z",
   "status": "degraded",
   "source_health": [
     {
       "source": "techmeme",
       "status": "ok",
-      "count": 16,
-      "checked_at": "2026-09-30T21:27:51Z",
+      "count": 15,
+      "checked_at": "2026-09-30T21:33:25Z",
       "newest_article_at": null
     },
     {
       "source": "hn",
       "status": "ok",
-      "count": 14,
-      "checked_at": "2026-09-30T21:27:51Z",
+      "count": 15,
+      "checked_at": "2026-09-30T21:33:25Z",
       "newest_article_at": null
     },
     {
       "source": "smol",
       "status": "stale",
       "count": 0,
-      "checked_at": "2026-09-30T21:27:51Z",
+      "checked_at": "2026-09-30T21:33:25Z",
       "newest_article_at": "2026-09-09T05:44:39Z"
     },
     {
       "source": "latent",
       "status": "ok",
       "count": 3,
-      "checked_at": "2026-09-30T21:27:51Z",
+      "checked_at": "2026-09-30T21:33:25Z",
       "newest_article_at": "2026-09-30T05:53:10Z"
     }
   ],
@@ -57,7 +57,7 @@
         {
           "source": "techmeme",
           "rank": 1,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
         }
@@ -83,7 +83,7 @@
       "headline_status": "source",
       "points": 124,
       "breakdown": {
-        "editorial": 124.5,
+        "editorial": 123.75,
         "community": 0,
         "agreement": 0,
         "persistence": 0,
@@ -92,8 +92,8 @@
       "observations": [
         {
           "source": "techmeme",
-          "rank": 5,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "rank": 6,
+          "observed_at": "2026-09-30T21:33:25Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
         }
@@ -129,7 +129,7 @@
         {
           "source": "techmeme",
           "rank": 25,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "observed_url": "https://www.techmeme.com/",
           "placement": "main headline"
         }
@@ -165,7 +165,7 @@
         {
           "source": "hn",
           "rank": 4,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "votes": 97,
           "comments": 43,
           "observed_url": "https://news.ycombinator.com/item?id=49911995",
@@ -203,9 +203,9 @@
         {
           "source": "hn",
           "rank": 9,
-          "observed_at": "2026-09-30T21:27:51Z",
-          "votes": 4,
-          "comments": 1,
+          "observed_at": "2026-09-30T21:33:25Z",
+          "votes": 5,
+          "comments": 3,
           "observed_url": "https://news.ycombinator.com/item?id=49914539",
           "published_at": "2026-09-30T21:13:02Z"
         }
@@ -241,9 +241,9 @@
         {
           "source": "hn",
           "rank": 10,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "votes": 558,
-          "comments": 322,
+          "comments": 323,
           "observed_url": "https://news.ycombinator.com/item?id=49906637",
           "published_at": "2026-09-30T09:55:23Z"
         }
@@ -267,19 +267,19 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 56,
+      "points": 55,
       "breakdown": {
         "editorial": 0,
-        "community": 56.0,
+        "community": 55.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 56
+        "total": 55
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 45,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "rank": 46,
+          "observed_at": "2026-09-30T21:33:25Z",
           "votes": 15,
           "comments": 7,
           "observed_url": "https://news.ycombinator.com/item?id=49909913",
@@ -305,19 +305,19 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 54,
+      "points": 53,
       "breakdown": {
         "editorial": 0,
-        "community": 54.0,
+        "community": 53.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 54
+        "total": 53
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 47,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "rank": 48,
+          "observed_at": "2026-09-30T21:33:25Z",
           "votes": 862,
           "comments": 369,
           "observed_url": "https://news.ycombinator.com/item?id=49901736",
@@ -355,7 +355,7 @@
         {
           "source": "latent",
           "rank": 4,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "observed_url": "https://www.latent.space/feed",
           "published_at": "2026-09-29T01:48:18Z",
           "placement": "specialist editorial publication"
@@ -392,7 +392,7 @@
         {
           "source": "latent",
           "rank": 3,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "observed_at": "2026-09-30T21:33:25Z",
           "observed_url": "https://www.latent.space/feed",
           "published_at": "2026-09-29T02:44:29Z",
           "placement": "specialist editorial publication"
@@ -417,21 +417,21 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 35,
+      "points": 36,
       "breakdown": {
         "editorial": 0,
-        "community": 35.0,
+        "community": 36.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 35
+        "total": 36
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 66,
-          "observed_at": "2026-09-30T21:27:51Z",
+          "rank": 65,
+          "observed_at": "2026-09-30T21:33:25Z",
           "votes": 1041,
-          "comments": 927,
+          "comments": 928,
           "observed_url": "https://news.ycombinator.com/item?id=49896586",
           "published_at": "2026-09-29T17:06:45Z"
         }
@@ -455,20 +455,20 @@
       "scope": "coding",
       "category": "Agent ecosystem",
       "headline_status": "source",
-      "points": 12,
+      "points": 9,
       "breakdown": {
         "editorial": 0,
-        "community": 12.0,
+        "community": 9.0,
         "agreement": 0,
         "persistence": 0,
-        "total": 12
+        "total": 9
       },
       "observations": [
         {
           "source": "hn",
-          "rank": 89,
-          "observed_at": "2026-09-30T21:27:51Z",
-          "votes": 421,
+          "rank": 92,
+          "observed_at": "2026-09-30T21:33:25Z",
+          "votes": 422,
           "comments": 136,
           "observed_url": "https://news.ycombinator.com/item?id=49890226",
           "published_at": "2026-09-29T09:03:41Z"
