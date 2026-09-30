@@ -1,0 +1,26 @@
+{
+  "Set 1": {
+    "model": "gpt-6-sol",
+    "trial": 2
+  },
+  "Set 2": {
+    "model": "gpt-6-sol",
+    "trial": 3
+  },
+  "Set 3": {
+    "model": "gpt-6-luna",
+    "trial": 3
+  },
+  "Set 4": {
+    "model": "gpt-6-luna",
+    "trial": 1
+  },
+  "Set 5": {
+    "model": "gpt-6-luna",
+    "trial": 2
+  },
+  "Set 6": {
+    "model": "gpt-6-sol",
+    "trial": 1
+  }
+}

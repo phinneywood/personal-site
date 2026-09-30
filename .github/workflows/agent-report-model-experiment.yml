@@ -24,7 +24,7 @@ jobs:
       - name: Validate experiment and cost estimate
         run: python experiments/agent-report/run.py --dry-run
       - name: Run authorized comparison
-        if: hashFiles('experiments/agent-report/RUN_APPROVED') != ''
+        if: false # Completed experiment; paid execution intentionally disabled.
         env:
           OPENAI_API_KEY: ${{ secrets.AGENT_REPORT_OPENAI_API_KEY }}
         run: python experiments/agent-report/run.py --resume

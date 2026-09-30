@@ -1,0 +1,625 @@
+{
+  "locked_at_utc": "2026-09-30T18:17:52.763973+00:00",
+  "reviewer": "Assistant; model labels withheld until this file was written",
+  "evidence": "cards.json and captured-briefs.json; no model outputs beyond blind-review.md inspected for quality",
+  "limitations": "Single assistant reviewer, label blinding only; synthetic fixtures contribute to aggregate scores. Headlines omitting rollout caveats receive lower fidelity scores without asserting universal access. Taste remains Antonio\u2019s decision.",
+  "rubric": {
+    "fidelity": "5 fully preserves relevant scope/attribution; 4 supported but omits a useful qualifier; material unsupported claims fail independently",
+    "important_detail": "5 captures specific change and important benefit or scope; 4 captures change but omits one useful part; 3 generic or misses central change",
+    "scanability": "5 plain and quickly understood; 4 wordy, telegraphic or mildly awkward; 3 awkward syntax"
+  },
+  "ratings": [
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol; Copilot rollout is gradual",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Launch and gradual Copilot access are clear; cost/coding value proposition omitted."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP support alongside JavaScript tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C05",
+        "C06"
+      ],
+      "headline": "Open benchmark collects Opus 5.5 baseline without regression verdict",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C07",
+        "C08"
+      ],
+      "headline": "OpenAI documents reusable Codex cloud environments with gradual access",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Reusable environments and gradual access retained; cross-device benefit omitted."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C09",
+        "C10"
+      ],
+      "headline": "Anthropic reports open-weight model developed end-to-end exploits in evaluation",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C11",
+        "C12"
+      ],
+      "headline": "OpenAI announces connected-app cloud agents with staged rollout",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical later event changes GPT-6.1 Sol API pricing",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Hypothetical is explicit, but event-as-subject wording omits OpenAI and is awkward."
+    },
+    {
+      "set": "Set 1",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical later event patches Pi MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Hypothetical is explicit; event-as-subject wording is awkward."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol; Copilot rollout is gradual",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP alongside JavaScript tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C05",
+        "C06"
+      ],
+      "headline": "Opus 5.5 benchmark collects baseline without regression verdict",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C07",
+        "C08"
+      ],
+      "headline": "OpenAI documents reusable Codex cloud environments with gradual access",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C09",
+        "C10"
+      ],
+      "headline": "Anthropic reports open-weight model developed end-to-end exploit",
+      "fidelity": 4,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Attributed, but evaluation setting is omitted. No independent-verification claim."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C11",
+        "C12"
+      ],
+      "headline": "OpenAI announces connected-app cloud agents with staged rollout",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical: OpenAI later changes GPT-6.1 Sol API pricing",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 2",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical: Pi later patches MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP support alongside JavaScript-based tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C12",
+        "C11"
+      ],
+      "headline": "OpenAI announces cloud agents for work across connected apps",
+      "fidelity": 4,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Announcement does not claim universal access; staged rollout should be added."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C06",
+        "C05"
+      ],
+      "headline": "Open benchmark begins collecting an Opus 5.5 baseline",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Baseline collection is accurately unfinished; regression question omitted."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol as Copilot rollout begins gradually",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C08",
+        "C07"
+      ],
+      "headline": "OpenAI documents Codex Cloud tasks that continue across devices",
+      "fidelity": 4,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Cross-device benefit is clear; gradual access should be added."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C10",
+        "C09"
+      ],
+      "headline": "Anthropic reports open-weight model completed end-to-end exploit development",
+      "fidelity": 4,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Attributed, but evaluation setting is omitted."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical: OpenAI changes GPT-6.1 Sol API pricing after launch",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 3",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical: Pi patches an MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol; Copilot rollout remains gradual",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP support alongside JavaScript tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C05",
+        "C06"
+      ],
+      "headline": "Opus 5.5 benchmark is collecting a baseline, without a verdict",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Unfinished verdict preserved, but regression subject omitted."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C07",
+        "C08"
+      ],
+      "headline": "OpenAI documents gradually rolling out cross-device Codex cloud tasks",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 3,
+      "unsupported_claim": false,
+      "notes": "Preserves staged access and cross-device tasks; documents gradually rolling out is awkward."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C09",
+        "C10"
+      ],
+      "headline": "Anthropic evaluation reports open-weight model exploit development",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Evaluation attribution retained; end-to-end scope omitted."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C11",
+        "C12"
+      ],
+      "headline": "OpenAI announces cloud agents for work across connected apps",
+      "fidelity": 4,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Announcement does not claim universal access; staged rollout should be added."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical: OpenAI changes GPT-6.1 Sol API pricing after launch",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 4",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical: Pi patches an MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol, touting lower-cost agentic coding; Copilot rollout is gradual",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Best coverage of value proposition, properly attributed; reaches 12-word limit and needs comparator in Details."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP alongside JavaScript-based tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C05",
+        "C06"
+      ],
+      "headline": "Opus 5.5 benchmark is collecting a baseline; no regression verdict yet",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C07",
+        "C08"
+      ],
+      "headline": "OpenAI documents Codex cloud tasks that continue across devices, with gradual access",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Benefit and staged access retained; at 12 words, could be tightened."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C09",
+        "C10"
+      ],
+      "headline": "Anthropic evaluation reports an open-weight model developing end-to-end exploits",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C11",
+        "C12"
+      ],
+      "headline": "OpenAI announces cloud-based agents for work across connected apps",
+      "fidelity": 4,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Announcement does not claim universal access; staged rollout should be added."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical: OpenAI changes GPT-6.1 Sol API pricing after launch",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 5",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical: Pi patches an MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C01",
+        "C02"
+      ],
+      "headline": "OpenAI launches GPT-6.1 Sol; GitHub gradually rolls out Copilot access",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Launch and gradual access retained; slightly long, and omits coding/cost value proposition."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C03",
+        "C04"
+      ],
+      "headline": "Pi adds MCP alongside JavaScript-based tool orchestration",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C05",
+        "C06"
+      ],
+      "headline": "Open benchmark collects Opus 5.5 baseline without regression verdict",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C07",
+        "C08"
+      ],
+      "headline": "OpenAI gradually rolls out reusable Codex cloud environments",
+      "fidelity": 5,
+      "important_detail": 4,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Reusable environments and gradual access retained; cross-device benefit omitted."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C09",
+        "C10"
+      ],
+      "headline": "Anthropic reports open-weight model developed end-to-end exploits in evaluation",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 4,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C11",
+        "C12"
+      ],
+      "headline": "OpenAI announces staged rollout of cloud agents across connected apps",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C13"
+      ],
+      "headline": "Hypothetical: OpenAI later changes GPT-6.1 Sol API pricing",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    },
+    {
+      "set": "Set 6",
+      "card_ids": [
+        "C14"
+      ],
+      "headline": "Hypothetical: Pi later patches MCP connector security bug",
+      "fidelity": 5,
+      "important_detail": 5,
+      "scanability": 5,
+      "unsupported_claim": false,
+      "notes": "Supported specific change. Concision reflected in score."
+    }
+  ]
+}

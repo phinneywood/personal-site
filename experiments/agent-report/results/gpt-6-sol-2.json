@@ -1,0 +1,133 @@
+{
+  "id": "resp_03d036a7c157aa97016abd5155101087d1ada0fa4fbac4bac4",
+  "object": "response",
+  "created_at": 1790792021,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1790792027,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 4000,
+  "max_tool_calls": null,
+  "model": "gpt-6-sol",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_03d036a7c157aa97016abd5156707487d19bdf5163cc02e161",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"groups\":[{\"card_ids\":[\"C01\",\"C02\"],\"headline\":\"OpenAI launches GPT-6.1 Sol; Copilot rollout is gradual\",\"supported_fact\":\"OpenAI claims stronger agentic coding at lower cost than Astra; benchmark comparisons are vendor-reported. GitHub confirms gradual Copilot availability.\"},{\"card_ids\":[\"C03\",\"C04\"],\"headline\":\"Pi adds MCP support alongside JavaScript tool orchestration\",\"supported_fact\":\"Earendil describes Pi's combined MCP and JavaScript-based tool orchestration; adoption and reliability gains are not established.\"},{\"card_ids\":[\"C05\",\"C06\"],\"headline\":\"Open benchmark collects Opus 5.5 baseline without regression verdict\",\"supported_fact\":\"Repository status reports baseline collection; maintainers have not reached a performance-regression verdict.\"},{\"card_ids\":[\"C07\",\"C08\"],\"headline\":\"OpenAI documents reusable Codex cloud environments with gradual access\",\"supported_fact\":\"OpenAI documents prepared environments for coding tasks that continue across devices; access is rolling out gradually.\"},{\"card_ids\":[\"C09\",\"C10\"],\"headline\":\"Anthropic reports open-weight model developed end-to-end exploits in evaluation\",\"supported_fact\":\"Anthropic reports the evaluation finding; the supplied material does not independently reproduce it.\"},{\"card_ids\":[\"C11\",\"C12\"],\"headline\":\"OpenAI announces connected-app cloud agents with staged rollout\",\"supported_fact\":\"OpenAI announces cloud-based agents working across connected apps and confirms cloud computers and a staged rollout.\"},{\"card_ids\":[\"C13\"],\"headline\":\"Hypothetical later event changes GPT-6.1 Sol API pricing\",\"supported_fact\":\"The fixture describes a hypothetical OpenAI API pricing change a month after launch, distinct from launch and Copilot availability.\"},{\"card_ids\":[\"C14\"],\"headline\":\"Hypothetical later event patches Pi MCP connector security bug\",\"supported_fact\":\"The fixture describes a hypothetical security patch two months after MCP support launched, distinct from the support announcement.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "story_groups",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "card_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "headline": {
+                  "type": "string"
+                },
+                "supported_fact": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "card_ids",
+                "headline",
+                "supported_fact"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "groups"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1398,
+    "input_tokens_details": {
+      "cache_write_tokens": 1395,
+      "cached_tokens": 0
+    },
+    "output_tokens": 406,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1804
+  },
+  "user": null,
+  "metadata": {}
+}

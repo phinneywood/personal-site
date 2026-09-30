@@ -1,0 +1,65 @@
+[
+  {
+    "model": "gpt-6-luna",
+    "trials": 3,
+    "headline_count": 24,
+    "false_merges": 0,
+    "false_splits": 0,
+    "long_headlines": 0,
+    "unsupported_claims": 0,
+    "score_averages": {
+      "fidelity": 4.792,
+      "important_detail": 4.667,
+      "scanability": 4.625
+    },
+    "real_brief_score_averages": {
+      "fidelity": 4.722,
+      "important_detail": 4.556,
+      "scanability": 4.5
+    },
+    "input_tokens": 4194,
+    "output_tokens": 1694,
+    "cached_input_tokens": 0,
+    "reasoning_tokens": 0,
+    "token_cost_upper_estimate": 0.0012664,
+    "available_latency_seconds": [
+      3.21,
+      3.52
+    ],
+    "returned_models": [
+      "gpt-6-luna"
+    ]
+  },
+  {
+    "model": "gpt-6-sol",
+    "trials": 3,
+    "headline_count": 24,
+    "false_merges": 0,
+    "false_splits": 0,
+    "long_headlines": 0,
+    "unsupported_claims": 0,
+    "score_averages": {
+      "fidelity": 4.958,
+      "important_detail": 4.625,
+      "scanability": 4.542
+    },
+    "real_brief_score_averages": {
+      "fidelity": 4.944,
+      "important_detail": 4.611,
+      "scanability": 4.5
+    },
+    "input_tokens": 4194,
+    "output_tokens": 1239,
+    "cached_input_tokens": 0,
+    "reasoning_tokens": 0,
+    "token_cost_upper_estimate": 0.020778,
+    "available_latency_seconds": [
+      7.04,
+      6.3,
+      6.12
+    ],
+    "returned_models": [
+      "gpt-6-sol"
+    ]
+  }
+]
