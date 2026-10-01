@@ -1,5 +1,9 @@
 # Agent Report
 
+**Retired September 30, 2026.** The page and public feed routes have been removed
+and automatic refreshes stopped. See [retirement record](retirement.md). The
+remaining instructions below document the historical experiment.
+
 Public AI/agentic coding news page at **https://antonioskilton.com/agent-report**, using the existing Astro/Vercel website. Approved September 30, 2026: public sharing, $10/month AI allowance, reuse hosting, automatic AI headlines after factual checks with source-headline fallback. The earlier private prototype stays unchanged.
 
 ## User experience

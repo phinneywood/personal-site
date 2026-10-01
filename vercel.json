@@ -20,56 +20,11 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
-    },
-    {
-      "source": "/agent-report/:path*",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "index, follow"
-        }
-      ]
-    },
-    {
-      "source": "/agent-report/current.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=120, stale-while-revalidate=300"
-        }
-      ]
-    },
-    {
-      "source": "/agent-report/feed.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/rss+xml; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=120, stale-while-revalidate=300"
-        }
-      ]
     }
   ],
   "git": {
     "deploymentEnabled": {
       "agent-report-data": false
     }
-  },
-  "rewrites": [
-    {
-      "source": "/agent-report/current.json",
-      "destination": "https://raw.githubusercontent.com/phinneywood/personal-site/agent-report-data/agent-report/latest.json"
-    },
-    {
-      "source": "/agent-report/feed.xml",
-      "destination": "https://raw.githubusercontent.com/phinneywood/personal-site/agent-report-data/agent-report/feed.xml"
-    }
-  ]
+  }
 }

@@ -43,4 +43,4 @@ The site is publicly reachable at https://antonioskilton.com. Live HTML was veri
 
 ## Agent Report
 
-Agent Report adds a separate news page at `/agent-report`, a four-hour feed refresh pipeline and RSS. It reuses this hosting without changing the portfolio biography. See [operation, ranking and budget documentation](docs/agent-report/README.md). The API key remains in GitHub Actions; feed data lives on the isolated `agent-report-data` branch.
+Agent Report was a public AI/agentic coding news experiment, retired September 30, 2026. Its public page, feeds and automatic refreshes have been removed. The portfolio biography is unchanged. [Historical documentation and retirement record](docs/agent-report/retirement.md) remain available; source and data history are retained.
