@@ -1,0 +1,31 @@
+name: Personal site checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Verify retirement in build output
+        run: |
+          test ! -e dist/agent-report/index.html
+          test ! -e dist/agent-report/current.json
+          test ! -e dist/agent-report/feed.xml
+          test ! -e .github/workflows/agent-report-refresh.yml
+      - name: Verify public retirement
+        if: github.ref == 'refs/heads/main'
+        run: node scripts/verify-agent-report-retired.mjs
