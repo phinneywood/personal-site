@@ -46,8 +46,8 @@ test('both projects have one description and a clear action, with Long Form firs
   assert.equal((page.match(/<p class="project-description">/g) || []).length, 2);
   assert.ok(text.includes('Your personal publication, run by an AI editor.'));
   assert.ok(text.includes('Open Long Form'));
-  assert.ok(text.includes('Experimental assistant workflows'));
-  assert.ok(text.includes('Explore on GitHub'));
+  assert.ok(text.includes('Assistant workflows'));
+  assert.ok(text.includes('See how it works'));
   assert.ok(page.indexOf('id="long-form-title"') < page.indexOf('id="outer-harness-title"'));
   assert.doesNotMatch(text, /A personal project|A little room to read|I built it to spend/);
 });

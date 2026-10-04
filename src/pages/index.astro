@@ -119,10 +119,10 @@
       .publication-lines span:nth-child(4) { margin-top: 4px; }
       .publication-lines span:last-child { width: 67%; }
       .publication-bottom { width: 100%; border-top: 1px solid #bfc8b5; margin-top: 18px; padding-top: 7px; color: var(--muted); font: 8px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-      .operating-notes { align-self: center; justify-self: end; width: 168px; padding: 20px 16px; background: var(--paper); border: 1px solid #bfc8b5; }
-      .operating-notes-title { margin: 0 0 18px; font-family: var(--serif); font-size: 24px; font-weight: 400; line-height: 1.1; }
-      .operating-notes-row { border-top: 1px solid var(--rule); padding-block: 10px; font: 10px/1.4 var(--mono); color: var(--body); }
-      .operating-notes-row:last-child { padding-bottom: 0; }
+      .project-tagline { margin: 17px 0 0; color: var(--ink); font-size: 21px; line-height: 1.4; font-weight: 500; }
+      .project-definition { max-width: 510px; margin: 12px 0 0; color: var(--body); font-size: 14px; line-height: 1.6; }
+      .harness-mark { align-self: center; justify-self: end; width: 168px; color: var(--ink); }
+      .harness-mark svg { display: block; width: 100%; height: auto; }
       .footer {
         display: flex; align-items: center;
         border-top: 1px solid var(--rule); padding-block: 25px 38px;
@@ -144,7 +144,7 @@
         .about-copy p { font-size: 21px; line-height: 1.6; }
         .project-link { grid-template-columns: 1fr 133px; column-gap: 24px; padding: 28px; }
         .publication { width: 125px; }
-        .operating-notes { width: 125px; padding: 16px 12px; }
+        .harness-mark { width: 125px; }
         .publication-page { min-height: 175px; padding: 15px; }
         .publication-name { font-size: 28px; }
         .publication-lines { margin-top: 20px; }
@@ -170,7 +170,8 @@
         .project-description { font-size: 16px; line-height: 1.7; margin-top: 16px; }
         .project-description + .project-description { margin-top: 9px; }
         .project-cta { margin-top: 14px; }
-        .publication, .operating-notes { display: none; }
+        .publication { display: none; }
+        .harness-mark { width: 48px; margin-top: 21px; }
         .footer { align-items: flex-start; padding-block: 19px 25px; }
         .footer-note { font-size: 9px; }
       }
@@ -185,7 +186,7 @@
         *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
       }
       @media (forced-colors: active) {
-        .project-link, .publication-page, .operating-notes { border: 1px solid CanvasText; }
+        .project-link, .publication-page { border: 1px solid CanvasText; }
         .project-cta, .profile-link { color: LinkText; }
       }
       @media print {
@@ -193,7 +194,8 @@
         .page { width: 100%; }
         .intro { padding-top: 0; }
         .project-link { border: 1px solid #aaa; }
-        .skip-link, .publication, .operating-notes { display: none; }
+        .skip-link, .publication { display: none; }
+        .harness-mark { width: 48px; margin-top: 21px; }
         a[href^="https"]::after { content: " (" attr(href) ")"; font-size: 10px; overflow-wrap: anywhere; }
       }
     </style>
@@ -242,18 +244,20 @@
           <article class="project">
             <a class="project-link project-link--harness" href="https://github.com/phinneywood/outer-harness" aria-labelledby="outer-harness-title outer-harness-cta">
               <div class="project-copy">
-                <p class="project-category">Experimental assistant workflows</p>
+                <p class="project-category">Assistant workflows</p>
                 <h3 class="project-title" id="outer-harness-title">Outer Harness</h3>
-                <p class="project-description">Reusable instructions that help ChatGPT pick up ongoing work, keep project records current, and organize notes and documents. Public source, setup guides, and verification records.</p>
-                <span class="project-cta" id="outer-harness-cta">Explore on GitHub
+                <p class="project-tagline">Pick up where you left off.</p>
+                <p class="project-description">Give your AI assistant a way to follow ongoing projects, preserve useful decisions, and keep work moving across conversations.</p>
+                <p class="project-definition">An outer harness is a set of instructions and tools that guides an AI assistant’s work.</p>
+                <span class="project-cta" id="outer-harness-cta">See how it works
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg>
                 </span>
               </div>
-              <div class="operating-notes" aria-hidden="true">
-                <p class="operating-notes-title">Operating<br />notes</p>
-                <div class="operating-notes-row">Project records</div>
-                <div class="operating-notes-row">Durable knowledge</div>
-                <div class="operating-notes-row">Checks &amp; readback</div>
+              <div class="harness-mark" aria-hidden="true">
+                <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M28 20h64a16 16 0 0 1 16 16v42a16 16 0 0 1-16 16H46l-24 17V94h-4A16 16 0 0 1 2 78V36a16 16 0 0 1 16-16h10Z" />
+                  <path d="M45 37h27v39L58.5 66 45 76V37Z" />
+                </svg>
               </div>
             </a>
           </article>
