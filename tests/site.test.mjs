@@ -29,9 +29,10 @@ test('a single main landmark and heading, plus keyboard skip navigation', () => 
   assert.ok(page.includes('href="#main"'));
   assert.ok(page.includes('id="main"'));
 });
-test('no client JavaScript, form, personal email or externally loaded assets', () => {
-  assert.doesNotMatch(page, /<script\b|<form\b|mailto:|<iframe\b|<img\b/i);
+test('no client JavaScript, form, personal email or externally loaded assets; only the local mark', () => {
+  assert.doesNotMatch(page, /<script\b|<form\b|mailto:|<iframe\b/i);
   assert.doesNotMatch(page, /@import|@font-face|url\(\s*['"]?https?:/i);
+  assert.deepEqual([...page.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(m => m[1]), ['/outer-harness-mark-v2.png']);
 });
 test('preview indexing remains disabled in markup and hosting headers', () => {
   assert.match(page, /name="robots" content="noindex, nofollow"/);
