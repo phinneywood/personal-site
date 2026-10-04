@@ -1,6 +1,6 @@
 # Antonio Skilton — personal website
 
-Source for [antonioskilton.com](https://antonioskilton.com): a concise introduction to Antonio Skilton, with Long Form and links to LinkedIn and GitHub.
+Source for [antonioskilton.com](https://antonioskilton.com): a concise introduction to Antonio Skilton, with Long Form, Outer Harness, and links to LinkedIn and GitHub.
 
 A one-page Astro site with warm off-white surfaces, dark green typography, restrained rust accents, and an editorial layout. Independent of the Long Form application.
 

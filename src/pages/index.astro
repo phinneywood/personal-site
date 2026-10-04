@@ -76,6 +76,8 @@
       }
       .section-heading::after { content: ""; height: 1px; width: 100%; background: var(--rule); }
       .project { margin: 0; }
+      .project + .project { margin-top: 22px; }
+      .project-link--harness { background: #ecefe7; }
       .project-link {
         position: relative; display: grid; grid-template-columns: 1fr 190px;
         column-gap: 38px; min-height: 300px; padding: 34px 38px 32px;
@@ -117,6 +119,10 @@
       .publication-lines span:nth-child(4) { margin-top: 4px; }
       .publication-lines span:last-child { width: 67%; }
       .publication-bottom { width: 100%; border-top: 1px solid #bfc8b5; margin-top: 18px; padding-top: 7px; color: var(--muted); font: 8px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+      .operating-notes { align-self: center; justify-self: end; width: 168px; padding: 20px 16px; background: var(--paper); border: 1px solid #bfc8b5; }
+      .operating-notes-title { margin: 0 0 18px; font-family: var(--serif); font-size: 24px; font-weight: 400; line-height: 1.1; }
+      .operating-notes-row { border-top: 1px solid var(--rule); padding-block: 10px; font: 10px/1.4 var(--mono); color: var(--body); }
+      .operating-notes-row:last-child { padding-bottom: 0; }
       .footer {
         display: flex; align-items: center;
         border-top: 1px solid var(--rule); padding-block: 25px 38px;
@@ -138,6 +144,7 @@
         .about-copy p { font-size: 21px; line-height: 1.6; }
         .project-link { grid-template-columns: 1fr 133px; column-gap: 24px; padding: 28px; }
         .publication { width: 125px; }
+        .operating-notes { width: 125px; padding: 16px 12px; }
         .publication-page { min-height: 175px; padding: 15px; }
         .publication-name { font-size: 28px; }
         .publication-lines { margin-top: 20px; }
@@ -163,7 +170,7 @@
         .project-description { font-size: 16px; line-height: 1.7; margin-top: 16px; }
         .project-description + .project-description { margin-top: 9px; }
         .project-cta { margin-top: 14px; }
-        .publication { display: none; }
+        .publication, .operating-notes { display: none; }
         .footer { align-items: flex-start; padding-block: 19px 25px; }
         .footer-note { font-size: 9px; }
       }
@@ -178,7 +185,7 @@
         *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
       }
       @media (forced-colors: active) {
-        .project-link, .publication-page { border: 1px solid CanvasText; }
+        .project-link, .publication-page, .operating-notes { border: 1px solid CanvasText; }
         .project-cta, .profile-link { color: LinkText; }
       }
       @media print {
@@ -186,7 +193,7 @@
         .page { width: 100%; }
         .intro { padding-top: 0; }
         .project-link { border: 1px solid #aaa; }
-        .skip-link, .publication { display: none; }
+        .skip-link, .publication, .operating-notes { display: none; }
         a[href^="https"]::after { content: " (" attr(href) ")"; font-size: 10px; overflow-wrap: anywhere; }
       }
     </style>
@@ -229,6 +236,24 @@
                   <div class="publication-lines"><span></span><span></span><span></span><span></span><span></span></div>
                   <div class="publication-bottom">Kindle editions</div>
                 </div>
+              </div>
+            </a>
+          </article>
+          <article class="project">
+            <a class="project-link project-link--harness" href="https://github.com/phinneywood/outer-harness" aria-labelledby="outer-harness-title outer-harness-cta">
+              <div class="project-copy">
+                <p class="project-category">Experimental assistant workflows</p>
+                <h3 class="project-title" id="outer-harness-title">Outer Harness</h3>
+                <p class="project-description">Reusable instructions that help ChatGPT pick up ongoing work, keep project records current, and organize notes and documents. Public source, setup guides, and verification records.</p>
+                <span class="project-cta" id="outer-harness-cta">Explore on GitHub
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg>
+                </span>
+              </div>
+              <div class="operating-notes" aria-hidden="true">
+                <p class="operating-notes-title">Operating<br />notes</p>
+                <div class="operating-notes-row">Project records</div>
+                <div class="operating-notes-row">Durable knowledge</div>
+                <div class="operating-notes-row">Checks &amp; readback</div>
               </div>
             </a>
           </article>
