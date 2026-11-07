@@ -9,6 +9,8 @@ docs/PUBLIC-PROFILE.md before changing it.
 - Keep private career facts, LinkedIn exports, draft wording, before/after captures,
   approvals, credentials, and account bindings in `.profile-private/` or a separate
   private record. Never put them under `public/` or `src/pages/`.
+- Use Google Chrome for LinkedIn captures and review. Do not substitute Safari.
+  Record the browser and verified profile identity with the private baseline.
 - Do not fetch or scrape authenticated LinkedIn pages automatically. Use a current,
   owner-provided snapshot or an authorized read through a supported interface.
 - A request to review or prepare does not authorize a Git push, PR, Vercel preview,

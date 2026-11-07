@@ -8,6 +8,10 @@ export function validateSnapshot(value, { current = false } = {}) {
   if (current && (!/^\d{4}-\d{2}-\d{2}$/.test(value.capturedAt ?? '') || Number.isNaN(Date.parse(value.capturedAt)) || new Date(value.capturedAt).toISOString().slice(0, 10) !== value.capturedAt)) {
     throw new Error('Current snapshot needs an actual capturedAt date (YYYY-MM-DD).');
   }
+  if (current && (value.capture?.browser !== 'Google Chrome' ||
+      value.capture?.method !== 'visible-profile' || value.capture?.profileIdentityVerified !== true)) {
+    throw new Error('Current baseline needs a verified visible-profile capture in Google Chrome. Do not substitute Safari or invent capture evidence.');
+  }
   for (const key of ['headline', 'about']) {
     if (typeof value[key] !== 'string' || !value[key].trim()) throw new Error(`Snapshot needs nonempty ${key}.`);
     if (/^Replace with /.test(value[key])) throw new Error('Replace example fields with observed content.');

@@ -4,7 +4,7 @@ import test from 'node:test';
 import { PROFILE_URL, validateSnapshot, compareSnapshots } from '../scripts/profile-review.mjs';
 const profile = JSON.parse(await readFile(new URL('../profiles/public-profile.json', import.meta.url), 'utf8'));
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-const baseline = {url:PROFILE_URL,capturedAt:'2026-11-07',headline:'Current headline',about:'Current about',featured:[]};
+const baseline = {url:PROFILE_URL,capturedAt:'2026-11-07',headline:'Current headline',about:'Current about',featured:[],capture:{browser:'Google Chrome',method:'visible-profile',profileIdentityVerified:true}};
 test('public inventory stays aligned with approved page content and destinations', () => {
   assert.ok(page.includes(profile.biography));
   for (const url of [profile.linkedin, profile.github, ...profile.projects.map(p=>p.url)]) assert.ok(page.includes(`href="${url}"`));
@@ -31,4 +31,12 @@ test('wrong identity, unknown baseline, and unsafe featured URLs fail closed', (
   assert.throws(()=>validateSnapshot({...baseline,about:''}));
   assert.throws(()=>validateSnapshot({...baseline,featured:['javascript:alert(1)']}));
   assert.throws(()=>validateSnapshot({...baseline,featured:['https://user:password@example.com']}));
+});
+
+test('current LinkedIn snapshots require Chrome and verified visible profile identity', () => {
+  assert.throws(()=>validateSnapshot({...baseline,capture:undefined},{current:true}));
+  assert.throws(()=>validateSnapshot({...baseline,capture:{...baseline.capture,browser:'Safari'}},{current:true}));
+  assert.throws(()=>validateSnapshot({...baseline,capture:{...baseline.capture,profileIdentityVerified:false}},{current:true}));
+  assert.throws(()=>validateSnapshot({...baseline,capture:{...baseline.capture,method:'cookie-export'}},{current:true}));
+  assert.equal(validateSnapshot(baseline,{current:true}),baseline);
 });

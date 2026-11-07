@@ -12,3 +12,9 @@ Current LinkedIn text has not been obtained. A starter proposal contains only fa
 already on the public website; capture the current profile and ask about emphasis
 before treating it as a recommendation. The review command must report the missing
 baseline rather than silently passing.
+
+LinkedIn capture must use Google Chrome, per the owner's latest instruction.
+Read docs/CHROME-WORKFLOW.md. Chrome is installed, but the current UI attempt was
+blocked by the locked Mac. After manual unlock, recheck Chrome and account/profile
+identity before collecting only the requested public fields. Do not sign in,
+copy credentials, or change Chrome security settings just to unblock capture.

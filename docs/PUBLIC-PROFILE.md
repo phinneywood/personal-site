@@ -21,11 +21,15 @@ https://www.linkedin.com/in/antonioskilton. Its available operation is people se
 it did not return the actual headline, About, experience, or Featured sections, and
 it provides no edit operation. Do not represent a search result as a profile audit.
 
-First capture current headline, About, and public Featured URLs using the owner's
-provided text/export or an authorized signed-in read. Record the date and exact
+Use Google Chrome for the repeatable capture and review flow. Follow
+[Chrome workflow](CHROME-WORKFLOW.md); do not substitute Safari.
+First capture current headline, About, and public Featured URLs from the verified
+visible profile in Chrome, using an authorized read. Record the date and exact
 profile identity. Do not collect connections, messages, passwords, cookies, or
 private contacts. Use `profiles/linkedin-snapshot.example.json` as the structure and
-save the completed baseline at `.profile-private/linkedin-current.json`. Do not
+save the completed baseline at `.profile-private/linkedin-current.json`. Record
+Chrome, the visible-profile capture method, and the verified profile identity in
+the `capture` fields. The comparison rejects missing or contradictory provenance. Do not
 commit the capture. A missing baseline remains an explicit blocker, not a clean bill
 of health or permission to automate scraping.
 

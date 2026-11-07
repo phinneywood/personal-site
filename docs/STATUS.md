@@ -45,3 +45,14 @@ because branch pushes can trigger Vercel deployments.
   Report returned 404. The temporary preview process was stopped afterward.
 - Live browser visual review could not run because no browser was available in
   this execution session. Source/content and HTTPS checks are not visual QA.
+
+## Chrome workflow follow-up
+
+The LinkedIn workflow now explicitly uses Google Chrome, including a repeatable
+capture checklist and validated capture provenance. Chrome is installed on the
+Mac mini. Browser connection was unavailable during the check, and the native
+Chrome path then reported that the Mac was locked and could not be automatically
+unlocked. The next required action is to unlock the Mac manually, then inspect the
+existing Chrome session. No sign-in, credential export, browser-setting change,
+LinkedIn edit or schedule was performed. Capture is still incomplete.
+The updated 17-test suite, production build and output-privacy checks all pass.

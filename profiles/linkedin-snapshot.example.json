@@ -3,5 +3,10 @@
   "capturedAt": "YYYY-MM-DD",
   "headline": "Replace with exact currently visible headline",
   "about": "Replace with exact currently visible About text",
-  "featured": []
+  "featured": [],
+  "capture": {
+    "browser": "Google Chrome",
+    "method": "visible-profile",
+    "profileIdentityVerified": false
+  }
 }
