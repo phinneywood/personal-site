@@ -4,32 +4,47 @@ Source for [antonioskilton.com](https://antonioskilton.com): a concise introduct
 
 A one-page Astro site with warm off-white surfaces, dark green typography, restrained rust accents, and an editorial layout. Independent of the Long Form application.
 
+## Public-profile workspace
+
+This project also holds the review-first LinkedIn workflow. Read
+[Public profile](docs/PUBLIC-PROFILE.md), [Current status](docs/STATUS.md), and
+[Build/deploy runbook](docs/DEPLOYMENT.md). Unpublished LinkedIn copy and snapshots
+stay in ignored `.profile-private/`, never in this public repository or website.
+
 ## Development
 
-Use Node.js 22.12 or newer.
+Use Node 24, matching CI and Vercel. The Apple Silicon Mac setup installs the pinned
+runtime inside this checkout without changing system settings:
 
 ```sh
-npm install
-npm run dev
+./scripts/setup-mac.sh
+./scripts/npm-local.sh run dev -- --host 127.0.0.1
 ```
+
+With your own Node 24 installation, use `npm ci` and `npm run dev` instead.
 
 ## Verification
 
 ```sh
-npm test
-npm run build
-npm run preview
+./scripts/npm-local.sh run verify
+./scripts/npm-local.sh run preview -- --host 127.0.0.1
 ```
 
-`npm test` generates `preview/index.html` and runs the content and safety tests. The production build writes `dist/`. Commit `package-lock.json` after the first successful install, then use `npm ci`. The standalone preview is for design review; it is not a substitute for the Astro production build.
+Verification runs content/unit tests, builds Astro into `dist/`, and checks that the
+private workspace is absent from the output. `npm test` also creates a standalone
+`preview/index.html` for review; it is not the production build.
 
 ## Deployment
 
-Import this repository into a **separate** Vercel project. Use the Astro preset, build command `npm run build`, and output directory `dist`. Do not attach the main domain until the hosted preview has been verified.
+The existing Vercel project `personal-site` already serves antonioskilton.com from
+this repository. Do not import a duplicate project. The build is `npm run build`
+and output is `dist/`. See the [release and rollback procedure](docs/DEPLOYMENT.md).
+Pushing to GitHub can trigger a hosted preview or production deployment, so review
+and approve the destination before pushing. A local build is not a deployment.
 
-Private GitHub organization repositories require Vercel Pro for Git-connected deployment. Public repositories can use Hobby. Repository visibility does not by itself control website visibility.
-
-Before the approved public launch, remove preview `noindex, nofollow` from the page and the `X-Robots-Tag` response header, update the matching test, add the canonical URL, and connect `antonioskilton.com` with a `www` redirect. Preserve existing app and email DNS records.
+The live page still intentionally has `noindex, nofollow` in HTML and response
+headers. Search indexing and social-preview improvements remain a separate,
+approved release. Preserve existing application and email DNS records.
 
 ## Scope
 

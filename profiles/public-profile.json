@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "name": "Antonio Skilton",
+  "website": "https://antonioskilton.com",
+  "linkedin": "https://www.linkedin.com/in/antonioskilton",
+  "github": "https://github.com/antonioskilton",
+  "biography": "I’m a technical program manager with a data science background. I lead machine learning deployments and build agentic solutions to help teams ship models at a Fortune 100 company.",
+  "projects": [
+    { "name": "Long Form", "url": "https://reader.antonioskilton.com" },
+    { "name": "Outer Harness", "url": "https://github.com/phinneywood/outer-harness" }
+  ],
+  "provenance": {
+    "status": "existing-public-copy",
+    "source": "https://antonioskilton.com",
+    "observedAt": "2026-11-07",
+    "sourceCommit": "d5e58fc57c61968abfd1b84ad8a299f37b6449f8"
+  }
+}

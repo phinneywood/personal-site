@@ -1,0 +1,5 @@
+.git/
+.tools/
+.profile-private/
+node_modules/
+preview/

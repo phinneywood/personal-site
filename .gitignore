@@ -9,3 +9,6 @@ preview/
 .agent-report-browser/
 .agent-report-public/
 __pycache__/
+# Local toolchain and unpublished professional-profile material
+.tools/
+.profile-private/
