@@ -56,3 +56,12 @@ unlocked. The next required action is to unlock the Mac manually, then inspect t
 existing Chrome session. No sign-in, credential export, browser-setting change,
 LinkedIn edit or schedule was performed. Capture is still incomplete.
 The updated 17-test suite, production build and output-privacy checks all pass.
+
+## Always-locked operating constraint
+
+The owner clarified that the Mac mini will remain locked. Native Chrome capture is
+therefore not the default ongoing route. Command-line work was reverified while
+locked, and the existing power configuration already keeps the computer awake.
+See docs/LOCKED-MAC-OPTIONS.md for the proposed split between local project work and
+owner-operated Chrome capture/publishing. No alternative browser access, login,
+new service or security change has been configured.

@@ -13,8 +13,11 @@ already on the public website; capture the current profile and ask about emphasi
 before treating it as a recommendation. The review command must report the missing
 baseline rather than silently passing.
 
-LinkedIn capture must use Google Chrome, per the owner's latest instruction.
-Read docs/CHROME-WORKFLOW.md. Chrome is installed, but the current UI attempt was
-blocked by the locked Mac. After manual unlock, recheck Chrome and account/profile
-identity before collecting only the requested public fields. Do not sign in,
-copy credentials, or change Chrome security settings just to unblock capture.
+LinkedIn capture must use Google Chrome, per the owner's instruction. The owner
+then clarified that the Mac mini will stay locked. Read docs/LOCKED-MAC-OPTIONS.md
+before more browser work. Native Chrome input was blocked, but shell tooling works
+while locked; no security setting needs changing for the repo/build/diff workflow.
+The recommended separate Chrome capture device has not been selected or configured.
+Headless and browser-level connections remain untested alternatives, not a verified
+LinkedIn automation solution. Do not sign in, copy credentials or create persistent
+browser access without approval.

@@ -1,7 +1,9 @@
 # Repeatable LinkedIn capture in Chrome
 
 Use **Google Chrome on the Mac mini** for this project's LinkedIn work. The browser
-choice applies to initial capture and later reviews. Do not switch to Safari to get
+choice applies to initial capture and later reviews. The owner expects the Mac
+to remain locked, so this interactive Mac capture path is not the default ongoing
+solution; review [locked-Mac options](LOCKED-MAC-OPTIONS.md) before setup. Do not switch to Safari to get
 around a missing connection, a lock screen, or a sign-in step.
 
 ## Setup boundary
@@ -71,6 +73,6 @@ Chrome tabs, messages, account menus and contacts.
 Chrome installation was confirmed. Creating a connected Chrome tab returned that
 Chrome was unavailable in that session; the native Chrome inspection then reported
 the Mac was locked. The Chrome capture therefore has **not** been completed or
-validated end-to-end. Manual unlock is the immediate next step. Do not infer that
-an extension, Chrome settings change or new login is required before inspecting
-the unlocked interface.
+validated end-to-end. The owner subsequently specified that the Mac will stay
+locked. Do not keep asking for unlock or retry native input against this condition.
+Choose an appropriate architecture from the locked-Mac options before continuing.
