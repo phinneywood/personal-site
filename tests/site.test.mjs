@@ -18,7 +18,8 @@ test('both approved biography sentences appear in one paragraph', () => {
 });
 test('only the approved external destinations appear, with LinkedIn first among profile links', () => {
   assert.deepEqual([...page.matchAll(/href="(https:[^"]+)"/g)].map(m => m[1]), [
-    'https://www.linkedin.com/in/antonioskilton', 'https://github.com/antonioskilton', 'https://reader.antonioskilton.com', 'https://github.com/phinneywood/outer-harness'
+    'https://www.linkedin.com/in/antonioskilton', 'https://github.com/antonioskilton', 'https://reader.antonioskilton.com', 'https://github.com/phinneywood/outer-harness',
+    'https://github.com/phinneywood/hub'
   ]);
   const profileLinks = page.match(/<nav class="profile-links"[\s\S]*?<\/nav>/)[0];
   assert.ok(profileLinks.indexOf('LinkedIn') < profileLinks.indexOf('GitHub'));
@@ -43,12 +44,15 @@ test('reduced-motion and forced-color preferences are supported', () => {
   assert.ok(page.includes('(forced-colors: active)'));
 });
 
-test('both projects have one description and a clear action, with Long Form first', () => {
-  assert.equal((page.match(/<p class="project-description">/g) || []).length, 2);
+test('each project has one description and a clear action, with Long Form first and Hub last', () => {
+  assert.equal((page.match(/<p class="project-description">/g) || []).length, 3);
   assert.ok(text.includes('Your personal publication, run by an AI editor.'));
   assert.ok(text.includes('Open Long Form'));
   assert.ok(text.includes('Assistant workflows'));
   assert.ok(text.includes('See how it works'));
+  assert.ok(text.includes('Personal dashboard'));
+  assert.ok(text.includes('See the code'));
   assert.ok(page.indexOf('id="long-form-title"') < page.indexOf('id="outer-harness-title"'));
+  assert.ok(page.indexOf('id="outer-harness-title"') < page.indexOf('id="hub-title"'));
   assert.doesNotMatch(text, /A personal project|A little room to read|I built it to spend/);
 });
