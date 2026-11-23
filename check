@@ -1,0 +1,13 @@
+#!/bin/bash
+# The site's checks, run on the Mac before a change goes to main (`land merge` runs this).
+# The same steps as .github/workflows/site-checks.yml. A push to main is production.
+set -euo pipefail
+cd "$(dirname "$0")"
+./scripts/setup-mac.sh >/dev/null    # the pinned Node 24 in .tools, checksum-verified
+./scripts/npm-local.sh ci --no-audit --no-fund
+./scripts/npm-local.sh run verify
+for f in dist/agent-report/index.html dist/agent-report/current.json dist/agent-report/feed.xml \
+         .github/workflows/agent-report-refresh.yml; do
+  test ! -e "$f" || { echo "$f must not exist"; exit 1; }
+done
+echo "== all checks passed"
